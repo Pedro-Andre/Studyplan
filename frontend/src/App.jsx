@@ -1,10 +1,11 @@
-import "./App.css";
+// import Login from "./views/login/Login";
+import Register from "./views/Register/Register";
 
 function App() {
   return (
     <>
-      <h1>Studyplan</h1>
-      <h4>Login</h4>
+      {/* <Login></Login> */}
+      <Register></Register>
     </>
   );
 }
