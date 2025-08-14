@@ -1,11 +1,9 @@
-// import Login from "./views/login/Login";
-import Register from "./views/Register/Register";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <>
-      {/* <Login></Login> */}
-      <Register></Register>
+      <AppRoutes />
     </>
   );
 }
