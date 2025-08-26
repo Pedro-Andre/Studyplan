@@ -1,10 +1,10 @@
 import "./Home.css";
+import SideMenu from "../../components/Sidemenu/Sidemenu";
 
 function Home() {
   return (
     <>
-      <h1>Studyplan</h1>
-      <h4>Home</h4>
+      <SideMenu></SideMenu>
     </>
   );
 }

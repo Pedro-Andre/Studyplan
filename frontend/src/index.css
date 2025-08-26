@@ -1,16 +1,30 @@
 :root {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-
   color-scheme: light dark;
-  color: #e8e8e8;
-  background: linear-gradient(150deg, #1f1f1f, #0e1214);
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --clr-white: #f3f3f3;
+  --clr-white-light: #fff;
+  --clr-white-dark: #f1f2f6;
 
-  --clr-white: #e8e8e8;
-  --clr-white-borders: #e8e8e860;
-  --clr-blacl: #1f1f1f;
+  --clr-black: #171920;
+  --clr-black-light: #35373e;
+  --clr-black-dark: #212127;
+
+  --clr-gray: #66768d;
+  --clr-gray-light: #7a7a7f;
+
+  --clr-primary: #69c0f6;
+  --clr-primary-light: #69c0f6;
+  --clr-primary-dark: #334867;
+
+  --clr-highlight-attetion: #ffc664;
+  --clr-highlight-success: #5ceab1;
+  --clr-highlight-error: #f14c78;
+
+  --clr-gradient-light: linear-gradient(to right, #5b79ff, #69c0f6);
+  --clr-gradient-vertical-light: linear-gradient(to bottom, #5b79ff, #69c0f6);
+  --clr-gradient-dark: linear-gradient(to right, #69c0f6, #334867);
+  --clr-gradient-vertical-dark: linear-gradient(to bottom, #69c0f6, #334867);
+
   --font: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
@@ -26,13 +40,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font);
 }
 
 html {
   font-size: 62.5%;
+  font-family: var(--font);
 }
 
 body {
   min-height: 100vh;
-  padding-inline: 1.2rem;
+  background: var(--clr-black);
 }
