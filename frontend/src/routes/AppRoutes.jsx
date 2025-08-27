@@ -13,9 +13,10 @@ function AppRoutes() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="cadastro" element={<Register />} />
+          <Route path="calendario" element={<Calendar />} />
+          <Route path="metas" element={<Calendar />} />
           <Route path="pomodoro" element={<Pomodoro />} />
-          <Route path="calendar" element={<Calendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

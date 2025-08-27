@@ -24,5 +24,4 @@ export default App;
 <HugeiconsIcon icon={StopIcon} />
 <HugeiconsIcon icon={PlayIcon} />
 <HugeiconsIcon icon={Edit03Icon} />
-<HugeiconsIcon icon={ViewOffSlashIcon} />
 */
