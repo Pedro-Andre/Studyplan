@@ -38,6 +38,12 @@ Todos os direitos reservados.
 Este código é de uso exclusivo do autor e de colaboradores autorizados.  
 Não é permitida cópia, modificação, distribuição ou uso comercial sem permissão expressa por escrito.
 
-## ✨ Autor
+## ✨ Autores: Equipe Studyplan
 
-Desenvolvido por **Equipe Studyplan**
+#### Desenvolvedores(as) Full-Stack: [Pedro-Andre](https://github.com/Pedro-Andre), [Adryan-DevX](https://github.com/Adryan-DevX)
+
+#### Desenvolvedor(a) Front-End: [Jkalida](https://github.com/Jkalida)
+
+#### Analista de Requisitos: [LuanFeres](https://github.com/LuanFeres)
+
+#### Testers: [Pedro312777](https://github.com/Pedro312777), [arturtimaox](https://github.com/arturtimaox)
