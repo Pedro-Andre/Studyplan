@@ -10,16 +10,6 @@
   padding-inline: 1rem;
 }
 
-.gradient-text {
-  background: var(--clr-gradient-light);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  font-size: 4rem;
-  font-weight: 600;
-}
-
 .form {
   background: var(--clr-black);
   width: 100%;

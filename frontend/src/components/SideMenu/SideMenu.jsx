@@ -27,13 +27,13 @@ function SideMenu() {
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="nav-link">
+              <Link to={"/calendario"} className="nav-link">
                 <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
                 Calendário
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="nav-link">
+              <Link to={"/metas"} className="nav-link">
                 <HugeiconsIcon
                   icon={CheckmarkSquare03Icon}
                   className="link-icon"
@@ -42,13 +42,13 @@ function SideMenu() {
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="nav-link">
+              <Link to={"/pomodoro"} className="nav-link">
                 <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
                 Timer
               </Link>
             </li>
             <li>
-              <Link to={"/"} className="nav-link">
+              <Link to={"/perfil"} className="nav-link">
                 <HugeiconsIcon icon={User03Icon} className="link-icon" />
                 Meu perfil
               </Link>

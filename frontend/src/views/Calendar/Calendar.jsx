@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SideMenu from "../../components/Sidemenu/Sidemenu";
 import axios from "axios";
 
 function Calendar() {
@@ -19,10 +20,15 @@ function Calendar() {
   }, []);
 
   return (
-    <div>
-      <h2>Calendario</h2>
-      {user ? <p>Bem-vindo, {user.name}!</p> : <p>Carregando...</p>}
-    </div>
+    <>
+      <main className="view-container">
+        <SideMenu />
+        <div className="welcome-title">
+          <h2 className="gradient-text">Calendário</h2>
+          {/* {user ? <p>Olá, {user.name}</p> : <p>Você não está logado</p>} */}
+        </div>
+      </main>
+    </>
   );
 }
 

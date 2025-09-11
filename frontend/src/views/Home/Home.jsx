@@ -1,5 +1,5 @@
 import "./Home.css";
-import SideMenu from "../../components/Sidemenu/Sidemenu";
+import SideMenu from "../../components/SideMenu/SideMenu";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,7 +23,7 @@ function Home() {
   return (
     <>
       <main className="view-container">
-        <SideMenu></SideMenu>
+        <SideMenu />
         <div className="welcome-title">
           <h2>Bem-vindo,</h2>
           {user ? <p>Olá, {user.name}</p> : <p>Você não está logado</p>}
