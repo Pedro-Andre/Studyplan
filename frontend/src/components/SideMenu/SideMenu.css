@@ -1,23 +1,21 @@
 .menu-container {
-  /* border: 0.1rem solid #fff; */
+  border: var(--border-dark-mode);
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-width: 20rem; */
   width: 8rem;
   overflow: hidden;
-  min-height: 100vh;
+  height: 65rem;
   padding-inline: 1rem;
-  transition: all 0.3s;
-  /* box-shadow: 1rem 0 2rem #00000025; */
-  border-radius: 0 1.5rem 1.5rem 0;
+  transition: all 0.3s ease;
+  border-radius: 1.5rem;
+  margin-left: 1rem;
+  margin-block: 1rem;
+  background: var(--clr-black);
+  z-index: 99;
 }
 
 .menu-container.expanded {
-  width: 20rem;
-}
-
-.menu-container:hover {
   width: 20rem;
 }
 
@@ -28,7 +26,6 @@
 
 .links-container ul {
   list-style: none;
-  /* border: 0.1rem solid #0f0; */
   height: 50rem;
   display: flex;
   flex-direction: column;
@@ -37,18 +34,17 @@
 }
 
 .links-container ul li {
-  /* border: 0.1rem solid #f0f; */
   min-width: 100%;
+  margin-left: auto;
 }
 
-.links-container .nav-link {
+.nav-link {
   color: var(--clr-white);
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-decoration: none;
   display: flex;
   align-items: center;
-  text-align: left;
-  column-gap: 1rem;
+  column-gap: 5rem;
   transition: all 0.3s;
   cursor: pointer;
   padding-inline: 1rem;
@@ -58,11 +54,30 @@
   font-weight: 300;
 }
 
+.menu-container:not(.expanded):hover {
+  width: 20rem;
+}
+
+.menu-container.expanded .links-container .nav-link,
+.menu-container:hover .links-container .nav-link {
+  column-gap: 1rem;
+}
+
+.menu-container:hover .menu-btn .link-icon {
+  width: 15rem;
+}
+
+.menu-container.expanded .menu-btn .link-icon {
+  transform: rotateY(0deg);
+  width: 15rem;
+  margin-left: 0;
+}
+
 .nav-link.active {
   background: var(--clr-gradient-light);
   height: 5rem;
   border-radius: 1.2rem;
-  box-shadow: 0 1rem 1rem #00000050;
+  box-shadow: var(--shadow-60);
 }
 
 .nav-link:hover {
@@ -70,20 +85,24 @@
 }
 
 .links-container .menu-btn {
-  width: 15rem;
+  width: 5rem;
   height: 5rem;
   background: transparent;
   border: 0.1rem solid transparent;
   border-radius: 1.2rem;
-  transition: all 0.2s;
-  margin-inline: auto;
+  transition: all 0.3s;
   cursor: pointer;
+  margin-left: -0.5rem;
 }
 
 .links-container .link-icon {
   transition: all 0.3s;
+  margin-left: 0.5rem;
 }
 
-.links-container .menu-btn:hover .link-icon {
-  margin-left: -1rem;
+.menu-btn .link-icon {
+  margin-left: -0.35rem;
+  width: 3rem;
+  height: 3rem;
+  transform: rotateY(180deg);
 }

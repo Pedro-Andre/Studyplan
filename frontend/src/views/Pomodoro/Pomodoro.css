@@ -27,7 +27,7 @@
 .outer {
   width: 100%;
   max-width: 100rem;
-  height: 60rem;
+  height: 52rem;
   background: var(--clr-black-dark);
   border: var(--border-dark-mode);
   padding: 1rem;

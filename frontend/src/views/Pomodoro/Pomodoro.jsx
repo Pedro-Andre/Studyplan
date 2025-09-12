@@ -104,158 +104,152 @@ function PomodoroTimer() {
   }
 
   return (
-    <>
-      <main className="view-container">
-        <SideMenu />
-        <div className="timer-container">
-          <div className="header">
-            <h2 className="title gradient-text">Pomodoro</h2>
-            <p className="subtitle">
-              É hora de focar e fazer o que precisa ser feito!
-            </p>
-          </div>
+    <main className="view-container">
+      <SideMenu />
+      <div className="timer-container">
+        <div className="header">
+          <h2 className="title gradient-text">Pomodoro</h2>
+          <p className="subtitle">
+            É hora de focar e fazer o que precisa ser feito!
+          </p>
+        </div>
 
-          <div className="outer">
-            {/* botão de configuração */}
-            <button
-              className="settings-btn"
-              onClick={() => {
-                setTempCustomTimer(customTimer);
-                setTempAlarmOn(alarmOn);
-                setShowSettings(!showSettings);
-              }}
-            >
-              <HugeiconsIcon icon={Settings03Icon} className="icon" />
-            </button>
+        <div className="outer">
+          {/* botão de configuração */}
+          <button
+            className="settings-btn"
+            onClick={() => {
+              setTempCustomTimer(customTimer);
+              setTempAlarmOn(alarmOn);
+              setShowSettings(!showSettings);
+            }}
+          >
+            <HugeiconsIcon icon={Settings03Icon} className="icon" />
+          </button>
 
-            {/* menu de configurações */}
-            {showSettings && (
-              <div className="settings-menu">
-                <label className="settings-label">
-                  Use os botões para aumentar/diminuir o tempo ou personalize.
-                  <div className="timer-controls">
-                    <button
-                      className="adjust-btn"
-                      onClick={() =>
-                        setTempCustomTimer((prev) => Math.max(1, prev - 10))
-                      }
-                    >
-                      -10
-                    </button>
-                    <input
-                      type="number"
-                      value={tempCustomTimer}
-                      onChange={(e) =>
-                        setTempCustomTimer(Number(e.target.value))
-                      }
-                      min={1}
-                      className="settings-input timer-input"
-                    />
-                    <button
-                      className="adjust-btn"
-                      onClick={() => setTempCustomTimer((prev) => prev + 10)}
-                    >
-                      +10
-                    </button>
-                  </div>
-                </label>
-                <label className="settings-label alarm-label">
-                  Alarme:
-                  <input
-                    type="checkbox"
-                    checked={tempAlarmOn}
-                    onChange={() => setTempAlarmOn(!tempAlarmOn)}
-                    className="settings-checkbox"
-                  />
-                </label>
-                <div className="settings-buttons">
+          {/* menu de configurações */}
+          {showSettings && (
+            <div className="settings-menu">
+              <label className="settings-label">
+                Use os botões para aumentar/diminuir o tempo ou personalize.
+                <div className="timer-controls">
                   <button
-                    className="btn-settings reset-btn-2"
-                    onClick={handleResetSettings}
+                    className="adjust-btn"
+                    onClick={() =>
+                      setTempCustomTimer((prev) => Math.max(1, prev - 10))
+                    }
                   >
-                    Redefinir
+                    -10
                   </button>
+                  <input
+                    type="number"
+                    value={tempCustomTimer}
+                    onChange={(e) => setTempCustomTimer(Number(e.target.value))}
+                    min={1}
+                    className="settings-input timer-input"
+                  />
                   <button
-                    className="btn-settings save-btn"
-                    onClick={handleSaveSettings}
+                    className="adjust-btn"
+                    onClick={() => setTempCustomTimer((prev) => prev + 10)}
                   >
-                    Salvar
+                    +10
                   </button>
                 </div>
-              </div>
-            )}
-
-            <div className="mode-bar">
-              <button
-                className={`mode-btn ${
-                  mode === "timer" ? "selected-timer" : ""
-                }`}
-                onClick={() => switchMode("timer")}
-              >
-                Timer
-              </button>
-              <button
-                className={`mode-btn ${
-                  mode === "interval" ? "selected-interval" : ""
-                }`}
-                onClick={() => switchMode("interval")}
-              >
-                Intervalo
-              </button>
-            </div>
-
-            <div className="clock-container">
-              <svg width="350" height="350" viewBox="0 0 310 310">
-                <defs>
-                  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#379cff" />
-                    <stop offset="100%" stopColor="#183c7a" />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="154"
-                  cy="154"
-                  r="148"
-                  stroke="url(#grad)"
-                  strokeWidth="7"
-                  fill="none"
+              </label>
+              <label className="settings-label alarm-label">
+                Alarme:
+                <input
+                  type="checkbox"
+                  checked={tempAlarmOn}
+                  onChange={() => setTempAlarmOn(!tempAlarmOn)}
+                  className="settings-checkbox"
                 />
-              </svg>
-
-              {/* Clock */}
-              <div className="clock">
-                <span className="time-text">{fmt(time)}</span>
+              </label>
+              <div className="settings-buttons">
                 <button
-                  className="play-btn"
-                  onClick={isRunning ? pause : startOrRestart}
+                  className="btn-settings reset-btn-2"
+                  onClick={handleResetSettings}
                 >
-                  {!isRunning ? (
-                    <HugeiconsIcon icon={PlayIcon} className="icon" />
-                  ) : (
-                    // <span className="play-icon">▶</span>
-                    <HugeiconsIcon icon={PauseIcon} className="icon" />
-                    // <span className="pause-icon">❚❚</span>
-                  )}
+                  Redefinir
+                </button>
+                <button
+                  className="btn-settings save-btn"
+                  onClick={handleSaveSettings}
+                >
+                  Salvar
                 </button>
               </div>
             </div>
+          )}
 
-            {/* botão de parar o alarme */}
-            {isAlarmPlaying && (
-              <button onClick={stopAlarm} className="reset-btn">
-                Parar Alarme
-              </button>
-            )}
-
-            {hasStarted && (
-              <button onClick={reset} className="reset-btn">
-                Resetar
-              </button>
-            )}
+          <div className="mode-bar">
+            <button
+              className={`mode-btn ${mode === "timer" ? "selected-timer" : ""}`}
+              onClick={() => switchMode("timer")}
+            >
+              Timer
+            </button>
+            <button
+              className={`mode-btn ${
+                mode === "interval" ? "selected-interval" : ""
+              }`}
+              onClick={() => switchMode("interval")}
+            >
+              Intervalo
+            </button>
           </div>
+
+          <div className="clock-container">
+            <svg width="350" height="350" viewBox="0 0 310 310">
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#379cff" />
+                  <stop offset="100%" stopColor="#183c7a" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="154"
+                cy="154"
+                r="148"
+                stroke="url(#grad)"
+                strokeWidth="7"
+                fill="none"
+              />
+            </svg>
+
+            {/* Clock */}
+            <div className="clock">
+              <span className="time-text">{fmt(time)}</span>
+              <button
+                className="play-btn"
+                onClick={isRunning ? pause : startOrRestart}
+              >
+                {!isRunning ? (
+                  <HugeiconsIcon icon={PlayIcon} className="icon" />
+                ) : (
+                  // <span className="play-icon">▶</span>
+                  <HugeiconsIcon icon={PauseIcon} className="icon" />
+                  // <span className="pause-icon">❚❚</span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* botão de parar o alarme */}
+          {isAlarmPlaying && (
+            <button onClick={stopAlarm} className="reset-btn">
+              Parar Alarme
+            </button>
+          )}
+
+          {hasStarted && (
+            <button onClick={reset} className="reset-btn">
+              Resetar
+            </button>
+          )}
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
 

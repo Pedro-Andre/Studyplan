@@ -1,4 +1,5 @@
 import "./SideMenu.css";
+import { useState, useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Home01Icon,
@@ -8,60 +9,97 @@ import {
   User03Icon,
   ArrowLeft01Icon,
 } from "@hugeicons/core-free-icons";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LightLogo from "../LightLogo/LightLogo";
 
 function SideMenu() {
+  const [expanded, setExpanded] = useState(
+    () => JSON.parse(localStorage.getItem("menuExpanded")) ?? true
+  );
+
+  useEffect(() => {
+    localStorage.setItem("menuExpanded", JSON.stringify(expanded));
+  }, [expanded]);
+
   return (
-    <>
-      <div className="menu-container expanded">
-        <div className="logo">
-          <LightLogo></LightLogo>
-        </div>
-        <div className="links-container">
-          <ul className="menu-links">
-            <li>
-              <Link to={"/"} className="nav-link active">
-                <HugeiconsIcon icon={Home01Icon} className="link-icon" />
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to={"/calendario"} className="nav-link">
-                <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
-                Calendário
-              </Link>
-            </li>
-            <li>
-              <Link to={"/metas"} className="nav-link">
-                <HugeiconsIcon
-                  icon={CheckmarkSquare03Icon}
-                  className="link-icon"
-                />
-                Metas
-              </Link>
-            </li>
-            <li>
-              <Link to={"/pomodoro"} className="nav-link">
-                <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
-                Timer
-              </Link>
-            </li>
-            <li>
-              <Link to={"/perfil"} className="nav-link">
-                <HugeiconsIcon icon={User03Icon} className="link-icon" />
-                Meu perfil
-              </Link>
-            </li>
-            <li className="nav-link">
-              <button className="menu-btn">
-                <HugeiconsIcon icon={ArrowLeft01Icon} className="link-icon" />
-              </button>
-            </li>
-          </ul>
-        </div>
+    <div className={`menu-container ${expanded ? "expanded" : ""}`}>
+      <div className="logo">
+        <NavLink to="/" end>
+          <LightLogo />
+        </NavLink>
       </div>
-    </>
+      <div className="links-container">
+        <ul className="menu-links">
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              end
+            >
+              <HugeiconsIcon icon={Home01Icon} className="link-icon" />
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/calendario"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
+              Calendário
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/metas"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <HugeiconsIcon
+                icon={CheckmarkSquare03Icon}
+                className="link-icon"
+              />
+              Metas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/pomodoro"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
+              Timer
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/perfil"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <HugeiconsIcon icon={User03Icon} className="link-icon" />
+              Perfil
+            </NavLink>
+          </li>
+          <li className="nav-link">
+            <button
+              className="menu-btn"
+              onClick={() => setExpanded((prev) => !prev)}
+            >
+              <HugeiconsIcon icon={ArrowLeft01Icon} className="link-icon" />
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 

@@ -21,15 +21,13 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <main className="view-container">
-        <SideMenu />
-        <div className="welcome-title">
-          <h2>Bem-vindo,</h2>
-          {user ? <p>Olá, {user.name}</p> : <p>Você não está logado</p>}
-        </div>
-      </main>
-    </>
+    <main className="view-container">
+      <SideMenu />
+      <div className="welcome-title">
+        <h2>Bem-vindo,</h2>
+        {user ? <p>Olá, {user.name}</p> : <p>Você não está logado</p>}
+      </div>
+    </main>
   );
 }
 
