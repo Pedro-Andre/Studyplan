@@ -11,16 +11,16 @@ const validationCreateUser = [
     .withMessage("Usuário muito curto")
     .isString()
     .withMessage("Nome de usuário dever um texto!"),
-  body("email")
-    .isEmail()
-    .withMessage("E-mail inválido")
-    .isString()
-    .withMessage("E-mail dever um texto!"),
+  // body("email")
+  // .isEmail()
+  // .withMessage("E-mail inválido")
+  // .isString()
+  // .withMessage("E-mail dever um texto!"),
   body("password").isLength({ min: 6 }).withMessage("Senha muito curta"),
 ];
 
 const validationLoginUser = [
-  body("email").isEmail().withMessage("Email inválido"),
+  // body("email").isEmail().withMessage("Email inválido"),
   body("password").notEmpty().withMessage("Senha obrigatória"),
 ];
 

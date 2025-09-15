@@ -14,7 +14,7 @@
   background: var(--clr-black);
   width: 100%;
   max-width: 120rem;
-  min-height: 70rem;
+  min-height: 87vh;
   border-radius: 3rem;
   display: flex;
   flex-direction: column;
@@ -43,8 +43,8 @@
 }
 
 .label input {
-  height: 6rem;
-  border-radius: 1.5rem;
+  height: 5rem;
+  border-radius: 1.2rem;
   border: 0.2rem solid var(--clr-gray-light);
   font-family: var(--font);
   padding-inline: 1rem;
@@ -75,8 +75,8 @@
 .form-btn {
   width: 100%;
   max-width: 40rem;
-  height: 6rem;
-  border-radius: 1.5rem;
+  height: 5rem;
+  border-radius: 1.2rem;
   background: var(--clr-gradient-light);
   text-transform: uppercase;
   font-weight: 600;

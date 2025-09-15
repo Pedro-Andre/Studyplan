@@ -243,7 +243,7 @@ function PomodoroTimer() {
           )}
 
           {hasStarted && (
-            <button onClick={reset} className="reset-btn">
+            <button onClick={reset} className="reset-btn screen">
               Resetar
             </button>
           )}

@@ -1,6 +1,57 @@
+/* Dashboard container */
 .view-container {
   display: flex;
+  /* background: #ff222120; */
 }
 
-/* .welcome-title {
-} */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 5rem;
+  padding-inline: 1rem;
+  /* background: #00ff2220; */
+}
+
+.welcome-title {
+  display: flex;
+  align-items: last baseline;
+  /* background: #fff33350; */
+}
+
+.welcome-title h2 {
+  font-size: 2rem;
+}
+
+.welcome-title p {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.welcome-title .home-login {
+  color: var(--clr-gray);
+}
+
+.logout-btn {
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  color: var(--clr-white);
+  width: 100%;
+  max-width: 6.5rem;
+  font-weight: 600;
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  scale: 0.95;
+}
+
+.gradient-text.home {
+  font-size: 2.5rem;
+  margin-bottom: -0.5rem;
+  margin-left: 0.5rem;
+}

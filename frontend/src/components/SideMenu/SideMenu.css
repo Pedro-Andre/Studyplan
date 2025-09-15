@@ -5,12 +5,10 @@
   align-items: center;
   width: 8rem;
   overflow: hidden;
-  height: 65rem;
+  min-height: 100vh;
   padding-inline: 1rem;
   transition: all 0.3s ease;
   border-radius: 1.5rem;
-  margin-left: 1rem;
-  margin-block: 1rem;
   background: var(--clr-black);
   z-index: 99;
 }
