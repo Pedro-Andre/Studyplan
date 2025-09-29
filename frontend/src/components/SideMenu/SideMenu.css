@@ -103,4 +103,5 @@
   width: 3rem;
   height: 3rem;
   transform: rotateY(180deg);
+  color: var(--clr-white);
 }

@@ -2,20 +2,20 @@ import { body, validationResult } from "express-validator";
 
 const validationCreateUser = [
   body("name")
+    .isString()
+    .withMessage("Nome dever um texto!")
     .isLength({ min: 2 })
-    .withMessage("Nome muito curto")
-    .isString()
-    .withMessage("Nome dever um texto!"),
+    .withMessage("Nome muito curto"),
   body("username")
-    .isLength({ min: 3 })
-    .withMessage("Usuário muito curto")
     .isString()
-    .withMessage("Nome de usuário dever um texto!"),
-  // body("email")
-  // .isEmail()
-  // .withMessage("E-mail inválido")
-  // .isString()
-  // .withMessage("E-mail dever um texto!"),
+    .withMessage("Nome de usuário dever um texto!")
+    .isLength({ min: 3 })
+    .withMessage("Nome de usuário muito curto"),
+  body("email")
+    .isEmail()
+    .withMessage("E-mail inválido")
+    .isString()
+    .withMessage("E-mail dever um texto!"),
   body("password").isLength({ min: 6 }).withMessage("Senha muito curta"),
 ];
 

@@ -1,0 +1,32 @@
+.calendar {
+  /* background: var(--clr-black); */
+  color: var(--clr-primary-light);
+}
+
+.view-container .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.view-container .content > .container {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.calendar-title {
+  margin-left: 1rem;
+  margin-block: 2rem;
+}
+
+/* current day on the calendar */
+.calendar .rbc-today {
+  background: var(--clr-black-light);
+}
+
+/* days from next or previous month */
+.calendar .rbc-off-range-bg {
+  background: var(--clr-black-light);
+}

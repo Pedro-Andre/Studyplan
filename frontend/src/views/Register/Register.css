@@ -120,3 +120,7 @@
 .input-password-container:hover .input-icon {
   color: var(--clr-white);
 }
+
+.form .error {
+  font-size: 1.6rem;
+}

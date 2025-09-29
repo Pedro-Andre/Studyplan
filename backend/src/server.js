@@ -81,7 +81,8 @@ app.post("/login", validations.validationLoginUser, async (req, res) => {
     if (!user) return res.status(400).json({ error: "Usuário não encontrado" });
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(400).json({ error: "Senha inválida" });
+    if (!match)
+      return res.status(400).json({ error: "Senha inválida ou incorreta" });
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: "1d",

@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
 
   --clr-white: #f3f3f3;
   --clr-white-light: #fff;
@@ -60,12 +60,23 @@ body {
   background: var(--clr-black);
 }
 
+.view-container {
+  display: flex;
+  min-height: 100vh;
+}
+
 .gradient-text {
   background: var(--clr-gradient-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
+}
+
+.menus {
+  display: flex;
+  width: 100%;
+  background: #ff02;
 }
