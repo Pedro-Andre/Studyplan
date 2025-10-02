@@ -16,6 +16,7 @@
   --clr-primary-light: #69c0f6;
   --clr-primary-medium: #5060a3;
   --clr-primary-dark: #234986;
+  --clr-current-day: #23498650;
 
   --clr-primary-highlight: #2329cc;
   --clr-highlight-attetion: #ffc664;
@@ -26,6 +27,7 @@
   --border-light-mode: 0.1rem solid var(--clr-gray);
 
   --shadow-60: 0 1rem 3rem #00000060;
+  --modal-shadow: 2rem 2.5rem 3rem #00000070;
 
   --clr-gradient-light: linear-gradient(to right, #5b79ff, #69c0f6);
   --clr-gradient-vertical-light: linear-gradient(to bottom, #5b79ff, #69c0f6);
