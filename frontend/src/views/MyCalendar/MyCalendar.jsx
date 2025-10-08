@@ -32,6 +32,12 @@ function MyCalendar() {
   const [date, setDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const eventColorStyle = (event) => ({
+    style: {
+      backgroundColor: event.color,
+    },
+  });
+
   // Function that allows drop the events on calendar
   const resizeEvents = (data) => {
     const { start, end } = data;
@@ -91,15 +97,14 @@ function MyCalendar() {
               events={events}
               localizer={localizer}
               messages={messages}
-              // startAccessor="start"
-              // endAccessor="end"
               culture="pt-BR"
               resizable
-              className="calendar"
               selectable
+              className="calendar"
               onEventDrop={resizeEvents}
               onEventResize={resizeEvents}
               onSelectEvent={handleOpenEvent}
+              eventPropGetter={eventColorStyle}
             />
             {selectedEvent && (
               <EventModal event={selectedEvent} onClose={handleCloseEvent} />
