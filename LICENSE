@@ -1,21 +1,25 @@
-MIT License
+Licença de Uso e Direitos Autorais – Studyplan
 
-Copyright (c) 2025 Studyplan
+Copyright (c) 2025 Studyplan. Todos os direitos reservados.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Este software e todo o seu código-fonte são de propriedade exclusiva da equipe Studyplan. 
+A reprodução, cópia, modificação, redistribuição, publicação, engenharia reversa ou uso 
+não autorizado, total ou parcial, deste código-fonte é expressamente proibida sem o 
+consentimento prévio e por escrito dos detentores dos direitos autorais.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Este repositório é destinado exclusivamente ao desenvolvimento e manutenção do software
+Studyplan. Nenhum direito de uso, cópia ou redistribuição é concedido a terceiros fora
+da equipe autorizada.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+O software resultante deste código poderá ser disponibilizado publicamente aos usuários
+finais apenas em sua forma compilada (versão binária ou distribuída), mediante os termos
+de uso definidos pela equipe Studyplan.
+
+É vedada qualquer utilização deste código-fonte para fins comerciais, educacionais ou
+experimentais sem autorização expressa e formal dos autores.
+
+O descumprimento destas condições constitui violação de direitos autorais conforme as 
+leis brasileiras (Lei nº 9.610/1998) e tratados internacionais de propriedade intelectual.
+
+Para solicitações de uso, licença ou parceria, entre em contato com:
+📧 contato@studyplan.com
