@@ -1,4 +1,4 @@
-import SideMenu from "../../components/SideMenu/SideMenu";
+import SideMenu from "../../components/Sidemenu/Sidemenu";
 import "./Goals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -51,7 +51,6 @@ function Goals() {
       prioridade: "Baixo",
       tempo: "1 hr 30 min",
     },
-
   ]);
 
   return (
@@ -60,18 +59,18 @@ function Goals() {
         <SideMenu></SideMenu>
         <div className="metas-container">
           <div className="container-header">
-
             <div className="titles">
               <h1 className="gradient-text">Metas</h1>
-              <p className="subtitulo">Concentre-se e defina suas prioridades ;)</p>
+              <p className="subtitulo">
+                Concentre-se e defina suas prioridades ;)
+              </p>
             </div>
-            
           </div>
 
           <div className="centralizar-botao">
             <button className="add-tarefa">+ Adicionar tarefa</button>
           </div>
-          
+
           {/* Cards de resumo */}
           <div className="cards-container">
             <div className="card">

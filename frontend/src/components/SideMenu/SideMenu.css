@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   width: 8rem;
+  min-width: 8rem;
   overflow: hidden;
   min-height: 100vh;
   padding-inline: 1rem;
