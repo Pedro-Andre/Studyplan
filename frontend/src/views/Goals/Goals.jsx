@@ -1,7 +1,20 @@
 import SideMenu from "../../components/SideMenu/SideMenu";
+import AddTaskModal from "./AddTaskModal";
 import "./Goals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  Task01Icon,
+  AlertCircleIcon,
+  BookmarkCheck01Icon,
+  HourglassIcon,
+  PlayIcon,
+  PauseIcon,
+} from "@hugeicons/core-free-icons";
+
+{/* <HugeiconsIcon icon={PauseIcon} /> */}
+
 
 function Goals() {
   const [user, setUser] = useState(null);
@@ -60,35 +73,52 @@ function Goals() {
         <SideMenu></SideMenu>
         <div className="metas-container">
           <div className="container-header">
-
             <div className="titles">
               <h1 className="gradient-text">Metas</h1>
               <p className="subtitulo">Concentre-se e defina suas prioridades ;)</p>
             </div>
-            
           </div>
-
-          <div className="centralizar-botao">
-            <button className="add-tarefa">+ Adicionar tarefa</button>
+          <div className="centralizar-btn">
+            <AddTaskModal/>
           </div>
           
           {/* Cards de resumo */}
           <div className="cards-container">
             <div className="card">
-              <h2>3</h2>
-              <p>Total de metas</p>
+              <div className="icons">
+                <HugeiconsIcon icon={Task01Icon} className="icon-style"/>
+              </div>
+              <div className="desc">
+                <h2>3</h2>
+                <p>Total de metas</p>
+              </div>
             </div>
             <div className="card">
-              <h2>1</h2>
-              <p>Não iniciadas</p>
+              <div className="icons">
+                <HugeiconsIcon icon={AlertCircleIcon} className="icon-style"/>
+              </div>
+              <div className="desc">
+                <h2>1</h2>
+                <p>Não iniciadas</p>
+              </div>
             </div>
             <div className="card">
-              <h2>1</h2>
-              <p>Metas finalizadas</p>
+              <div className="icons">
+                <HugeiconsIcon icon={BookmarkCheck01Icon} className="icon-style"/>
+              </div>
+              <div className="desc">
+                <h2>1</h2>
+                <p>Metas finalizadas</p>
+              </div>
             </div>
             <div className="card">
-              <h2>7 hrs, 20 min</h2>
-              <p>Horas acumuladas</p>
+              <div className="icons">
+                <HugeiconsIcon icon={HourglassIcon} className="icon-style"/>
+              </div>
+              <div className="desc">
+                <h2>7 hrs, 20 min</h2>
+                <p>Horas acumuladas</p>
+              </div>
             </div>
           </div>
 
@@ -109,9 +139,15 @@ function Goals() {
                 {metas.map((meta) => (
                   <tr key={meta.id}>
                     <td>
-                      <strong>{meta.titulo}</strong>
-                      <p className="fonte">{meta.fonte}</p>
+                      <div className="icons play">
+                        <HugeiconsIcon icon={PlayIcon} className="icon-style" />
+                      </div>
+                      <div className="descricao">
+                        <strong>{meta.titulo}</strong>
+                        <p className="fonte">{meta.fonte}</p>
+                      </div>
                     </td>
+                    
                     <td>
                       <span
                         className={`status ${
@@ -125,8 +161,10 @@ function Goals() {
                         {meta.status}
                       </span>
                     </td>
+
                     <td>{meta.dataAdicionada}</td>
                     <td>{meta.dataConclusao}</td>
+
                     <td>
                       <span
                         className={`prioridade ${
@@ -140,6 +178,7 @@ function Goals() {
                         {meta.prioridade}
                       </span>
                     </td>
+
                     <td>{meta.tempo}</td>
                   </tr>
                 ))}
@@ -148,7 +187,7 @@ function Goals() {
           </div>
 
           {/* Paginação */}
-          <div className="centralizar-botao">
+          <div className="centralizar-btn">
             <div className="paginacao">
               <button>Anterior</button>
               <button className="ativo">1</button>
