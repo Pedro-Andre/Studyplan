@@ -19,27 +19,24 @@
 
 .calendar-title {
   margin-left: 1rem;
+  background-size: 20rem;
   margin-block: 2rem 1rem;
 }
 
-/* Current day on the calendar */
 .calendar .rbc-today {
   background: var(--clr-current-day);
 }
 
-/* Days from next or previous month */
 .calendar .rbc-off-range-bg {
   background: var(--clr-black-light);
 }
 
-/* Capitalize the month name */
 .rbc-toolbar-label {
   text-transform: capitalize;
   font-size: 2rem;
   color: var(--clr-primary);
 }
 
-/* Capitalize the days of the week */
 .rbc-header {
   color: var(--clr-primary);
   text-transform: capitalize;
@@ -82,24 +79,24 @@
   border: var(--border-dark-mode);
 }
 
-/* Each day of the month */
+/* Cada dia no calendário */
 .calendar .rbc-month-view .rbc-day-bg {
-  border-radius: 1.2rem;
+  /* border-radius: 1.2rem; */
   border: var(--border-dark-mode);
 }
 
-/* Remove border-radius week and day view */
+/* Remove border-radius da view do dia e da semana */
 .calendar .rbc-time-view {
   border-radius: 1rem;
   border: var(--border-dark-mode);
 }
 
-/* line that separates de weeks of the month */
+/* linha que separa cada dia do mês*/
 .calendar .rbc-month-row {
   border: none !important;
 }
 
-/* day label of each day of the month */
+/* número de cada dia no calendário */
 .calendar .rbc-btn-group button {
   border: var(--border-dark-mode);
   color: var(--clr-gray);
@@ -121,7 +118,7 @@
   padding: 1rem 0.5rem;
 }
 
-/* Adjust the content of the events */
+/* Ajusta o conteúdo dos eventos  */
 .calendar .rbc-event-content {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,7 +139,7 @@
   margin-right: 0.5rem !important;
 }
 
-/* lines of week view */
+/* Linha na view de semana */
 .rbc-time-content > * + * > *,
 .rbc-header + .rbc-header,
 .rbc-day-bg + .rbc-day-bg {
@@ -161,4 +158,182 @@
 
 .rbc-day-slot .rbc-time-slot {
   border-top: var(--border-dark-mode) !important;
+}
+
+/* Toolbar Container */
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.mesAno {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--clr-gray);
+  margin-inline: auto;
+}
+
+/* Direita do Toolbar */
+.dir-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Custom Dropdown */
+.custom-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Texto dropdown */
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 0.625rem;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 12rem;
+  justify-content: space-between;
+}
+
+.dropdown-btn:hover {
+  background: var(--clr-black);
+  border: var(--border-dark-mode);
+}
+
+.dropdown-btn .drop-icon {
+  transition: transform 0.3s ease;
+  color: var(--clr-white);
+  height: 3rem;
+  width: 3rem;
+}
+
+.dropdown-btn .drop-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  min-width: 12rem;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  color: var(--clr-white);
+  border-radius: 0.6rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  z-index: 1001;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  padding: 0.625rem 1.25rem;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.dropdown-menu li:active {
+  background-color: #e9ecef;
+}
+
+/* Toolbar Navigation */
+.toolbar-navigation {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.days-btn {
+  padding: 0.625rem 1rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.days-btn:hover {
+  background-color: #f8f9fa;
+  border-color: #ced4da;
+  color: #212529;
+}
+
+.days-btn:active {
+  transform: scale(0.98);
+  background-color: #e9ecef;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .toolbar-container {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .dir-top {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .toolbar-navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown-btn,
+  .days-btn {
+    width: 100%;
+  }
+
+  .custom-dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mesAno {
+    font-size: 1.25rem;
+  }
+
+  .toolbar-navigation {
+    flex-direction: column;
+  }
 }

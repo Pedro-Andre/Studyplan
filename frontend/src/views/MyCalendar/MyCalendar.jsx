@@ -5,15 +5,22 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import DefaultEvents from "../../components/DefaultEvents/DefaultEvents.js";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import EventModal from "../../components/EventModal/EventModal.jsx";
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowDown01Icon,
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+} from "@hugeicons/core-free-icons";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
-// Sets the language for the calendar with date-fns
+// Define o idioma utilizando o 'date-fns'
 const locales = {
   "pt-BR": ptBR,
 };
@@ -38,7 +45,7 @@ function MyCalendar() {
     },
   });
 
-  // Function that allows drop the events on calendar
+  // Função para arrastar os eventos no calendário
   const resizeEvents = (data) => {
     const { start, end } = data;
     const updateEvents = events.map((event) => {
@@ -54,17 +61,17 @@ function MyCalendar() {
     setEvents(updateEvents);
   };
 
-  // open the event on calendar
+  // abre o evento no calendário
   const handleOpenEvent = (event) => {
     setSelectedEvent(event);
   };
 
-  // close the event on calendar
+  // fecha o evento no calendário
   const handleCloseEvent = (event) => {
     setSelectedEvent(null);
   };
 
-  // labels for the buttons of the calendar
+  // Nomes em português para os botões do calendário
   const messages = {
     allDay: "Dia inteiro",
     previous: "Anterior",
@@ -100,11 +107,14 @@ function MyCalendar() {
               culture="pt-BR"
               resizable
               selectable
-              className="calendar"
               onEventDrop={resizeEvents}
               onEventResize={resizeEvents}
               onSelectEvent={handleOpenEvent}
               eventPropGetter={eventColorStyle}
+              components={{
+                toolbar: CustomToolBar,
+              }}
+              className="calendar"
             />
             {selectedEvent && (
               <EventModal event={selectedEvent} onClose={handleCloseEvent} />
@@ -115,5 +125,80 @@ function MyCalendar() {
     </>
   );
 }
+
+const CustomToolBar = ({ label, onView, onNavigate, view }) => {
+  const [itemText, setItemText] = useState("month");
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (value) => {
+    setItemText(value);
+    setOpen(false);
+    onView(value);
+  };
+
+  // Função para traduzir o nome da visualização
+  const getViewLabel = (viewName) => {
+    const labels = {
+      month: "Mês",
+      week: "Semana",
+      day: "Dia",
+      agenda: "Agenda",
+    };
+    return labels[viewName] || viewName;
+  };
+
+  return (
+    <div className="toolbar-container">
+      <h1 className="mesAno">{label}</h1>
+
+      <div className="dir-top">
+        <div className="custom-dropdown" ref={dropdownRef}>
+          <button
+            className="dropdown-btn"
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            <span>{getViewLabel(itemText)}</span>
+            <HugeiconsIcon
+              icon={ArrowDown01Icon}
+              className={`drop-icon ${open ? "open" : ""}`}
+            />
+          </button>
+
+          {open && (
+            <ul className="dropdown-menu">
+              <li onClick={() => handleSelect("month")}>Mês</li>
+              <li onClick={() => handleSelect("week")}>Semana</li>
+              <li onClick={() => handleSelect("day")}>Dia</li>
+              <li onClick={() => handleSelect("agenda")}>Agenda</li>
+            </ul>
+          )}
+        </div>
+
+        <div className="toolbar-navigation">
+          <button className="btn days-btn" onClick={() => onNavigate("TODAY")}>
+            Hoje
+          </button>
+          <button className="btn days-btn" onClick={() => onNavigate("PREV")}>
+            <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
+          </button>
+          <button className="btn days-btn" onClick={() => onNavigate("NEXT")}>
+            <HugeiconsIcon icon={ArrowRight01Icon} size={18} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default MyCalendar;
