@@ -16,7 +16,6 @@ import {
   ArrowLeft01Icon,
   ArrowRight01Icon,
 } from "@hugeicons/core-free-icons";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
@@ -162,7 +161,17 @@ const CustomToolBar = ({ label, onView, onNavigate, view }) => {
     <div className="toolbar-container">
       <h1 className="mesAno">{label}</h1>
 
-      <div className="dir-top">
+      <div className="drop-container">
+        <button className="btn days-btn" onClick={() => onNavigate("TODAY")}>
+          Hoje
+        </button>
+        <button
+          className="btn days-btn prev-month"
+          onClick={() => onNavigate("PREV")}
+        >
+          <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
+        </button>
+
         <div className="custom-dropdown" ref={dropdownRef}>
           <button
             className="dropdown-btn"
@@ -185,17 +194,14 @@ const CustomToolBar = ({ label, onView, onNavigate, view }) => {
           )}
         </div>
 
-        <div className="toolbar-navigation">
-          <button className="btn days-btn" onClick={() => onNavigate("TODAY")}>
-            Hoje
-          </button>
-          <button className="btn days-btn" onClick={() => onNavigate("PREV")}>
-            <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
-          </button>
-          <button className="btn days-btn" onClick={() => onNavigate("NEXT")}>
-            <HugeiconsIcon icon={ArrowRight01Icon} size={18} />
-          </button>
-        </div>
+        <button
+          className="btn days-btn next-month"
+          onClick={() => onNavigate("NEXT")}
+        >
+          <HugeiconsIcon icon={ArrowRight01Icon} size={18} />
+        </button>
+
+        <div className="toolbar-navigation"></div>
       </div>
     </div>
   );

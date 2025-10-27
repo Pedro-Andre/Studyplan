@@ -28,7 +28,7 @@
 }
 
 .calendar .rbc-off-range-bg {
-  background: var(--clr-black-light);
+  background: var(--clr-black-dark);
 }
 
 .rbc-toolbar-label {
@@ -38,10 +38,20 @@
 }
 
 .rbc-header {
-  color: var(--clr-primary);
+  color: var(--clr-white);
   text-transform: capitalize;
   font-size: 1.5rem !important;
   font-weight: 500 !important;
+  padding-block: 1rem !important;
+  background: var(--clr-black-light);
+}
+
+.rbc-header:first-child {
+  border-radius: 1rem 0 0 0;
+}
+
+.rbc-header:last-child {
+  border-radius: 0 1rem 0 0;
 }
 
 /* Container of the calendar */
@@ -163,20 +173,31 @@
 /* Toolbar Container */
 .toolbar-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
+}
+
+.month-name {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1.5rem;
 }
 
 .mesAno {
   font-size: 2rem;
   font-weight: 600;
+  text-transform: capitalize;
   color: var(--clr-gray);
-  margin-inline: auto;
+  text-align: center;
+  flex: 1;
+  padding-left: 5rem;
 }
 
 /* Direita do Toolbar */
-.dir-top {
+.drop-container {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -193,7 +214,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-inline: 0.625rem;
+  padding: 0.15rem 0.625rem;
   background: var(--clr-black-light);
   border: var(--border-dark-mode);
   border-radius: 0.6rem;
@@ -251,48 +272,50 @@
 
 .dropdown-menu li {
   padding: 0.625rem 1.25rem;
-  color: #495057;
+  color: var(--clr-white);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.95rem;
+  font-size: 1.4rem;
 }
 
 .dropdown-menu li:hover {
-  background-color: #f8f9fa;
-  color: #212529;
+  background: var(--clr-black);
+  color: var(--clr-white);
 }
 
 .dropdown-menu li:active {
-  background-color: #e9ecef;
+  background-color: var(--clr-white);
 }
 
 /* Toolbar Navigation */
 .toolbar-navigation {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .days-btn {
-  padding: 0.625rem 1rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  padding: 0.7rem 1rem;
+  background-color: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  border-radius: 0.6rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  color: #495057;
+  color: var(--clr-white);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .days-btn:hover {
-  background-color: #f8f9fa;
-  border-color: #ced4da;
-  color: #212529;
+  background: var(--clr-black);
+  color: var(--clr-white);
 }
 
 .days-btn:active {
   transform: scale(0.98);
-  background-color: #e9ecef;
+  background: var(--clr-black);
 }
 
 /* Responsividade */
@@ -303,7 +326,7 @@
     align-items: flex-start;
   }
 
-  .dir-top {
+  .drop-container {
     width: 100%;
     flex-direction: column;
     gap: 0.75rem;

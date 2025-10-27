@@ -42,7 +42,7 @@
   font-size: 28px;
   text-align: center;
   background: var(--clr-gradient-light);
-  -webkit-background-clip: text;
+  --webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import SideMenu from "../../components/Sidemenu/Sidemenu";
-=======
 import SideMenu from "../../components/SideMenu/SideMenu";
 import AddTaskModal from "./AddTaskModal";
->>>>>>> origin/feat/metas-page
 import "./Goals.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -17,8 +13,9 @@ import {
   PauseIcon,
 } from "@hugeicons/core-free-icons";
 
-{/* <HugeiconsIcon icon={PauseIcon} /> */}
-
+{
+  /* <HugeiconsIcon icon={PauseIcon} /> */
+}
 
 function Goals() {
   const [user, setUser] = useState(null);
@@ -78,20 +75,17 @@ function Goals() {
           <div className="container-header">
             <div className="titles">
               <h1 className="gradient-text">Metas</h1>
-              <p className="subtitulo">
-                Concentre-se e defina suas prioridades ;)
-              </p>
             </div>
           </div>
           <div className="centralizar-btn">
-            <AddTaskModal/>
+            <AddTaskModal />
           </div>
 
           {/* Cards de resumo */}
           <div className="cards-container">
             <div className="card">
               <div className="icons">
-                <HugeiconsIcon icon={Task01Icon} className="icon-style"/>
+                <HugeiconsIcon icon={Task01Icon} className="icon-style" />
               </div>
               <div className="desc">
                 <h2>3</h2>
@@ -100,7 +94,7 @@ function Goals() {
             </div>
             <div className="card">
               <div className="icons">
-                <HugeiconsIcon icon={AlertCircleIcon} className="icon-style"/>
+                <HugeiconsIcon icon={AlertCircleIcon} className="icon-style" />
               </div>
               <div className="desc">
                 <h2>1</h2>
@@ -109,7 +103,10 @@ function Goals() {
             </div>
             <div className="card">
               <div className="icons">
-                <HugeiconsIcon icon={BookmarkCheck01Icon} className="icon-style"/>
+                <HugeiconsIcon
+                  icon={BookmarkCheck01Icon}
+                  className="icon-style"
+                />
               </div>
               <div className="desc">
                 <h2>1</h2>
@@ -118,7 +115,7 @@ function Goals() {
             </div>
             <div className="card">
               <div className="icons">
-                <HugeiconsIcon icon={HourglassIcon} className="icon-style"/>
+                <HugeiconsIcon icon={HourglassIcon} className="icon-style" />
               </div>
               <div className="desc">
                 <h2>7 hrs, 20 min</h2>
@@ -152,7 +149,7 @@ function Goals() {
                         <p className="fonte">{meta.fonte}</p>
                       </div>
                     </td>
-                    
+
                     <td>
                       <span
                         className={`status ${

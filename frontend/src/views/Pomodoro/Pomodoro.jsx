@@ -1,7 +1,7 @@
 // REFATORA COM CSS EXTERNO E CLASSES NOS ELEMENTOS
 import { useState, useEffect } from "react";
 import "./Pomodoro.css";
-import SideMenu from "../../components/SideMenu/SideMenu";
+import SideMenu from "../../components/Sidemenu/Sidemenu";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   PlayIcon,
@@ -109,9 +109,6 @@ function PomodoroTimer() {
       <div className="timer-container">
         <div className="header">
           <h2 className="title gradient-text">Pomodoro</h2>
-          <p className="subtitle">
-            É hora de focar e fazer o que precisa ser feito!
-          </p>
         </div>
 
         <div className="outer">

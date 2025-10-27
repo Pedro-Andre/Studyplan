@@ -60,7 +60,7 @@
 }
 
 .form-span {
-  color: var(--clr-gray-light);
+  color: var(--clr-gray);
   text-decoration: underline;
   font-size: 1.5rem;
 }
@@ -84,6 +84,7 @@
   border: none;
   transition: all 0.3s;
   cursor: pointer;
+  color: var(--clr-white);
 }
 
 .form-btn:hover {
@@ -114,7 +115,7 @@
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: var(--clr-gray-light);
+  color: var(--clr-gray);
 }
 
 .input-password-container:hover .input-icon {

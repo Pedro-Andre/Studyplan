@@ -7,12 +7,6 @@
   width: 100%;
 }
 
-.subtitulo {
-  font-size: 2rem;
-  color: #6b7280;
-  margin-bottom: 2rem;
-}
-
 /* Cards */
 .cards-container {
   display: flex;
@@ -39,11 +33,7 @@
   margin: 0;
 }
 
-<<<<<<< HEAD
-.centralizar-botao {
-=======
-.centralizar-btn{
->>>>>>> origin/feat/metas-page
+.centralizar-btn {
   display: flex;
   justify-content: flex-end;
 }
@@ -62,14 +52,11 @@
 
 table {
   width: 100%;
-<<<<<<< HEAD
   padding: 1rem;
   min-width: 90rem;
   border-collapse: collapse;
   /* background: #f302; */
-=======
   text-align: left;
->>>>>>> origin/feat/metas-page
 }
 
 th {
@@ -81,14 +68,12 @@ th {
 
 td {
   padding: 1rem;
-<<<<<<< HEAD
   border-top: var(--border-light-mode);
 }
 
 .fonte {
   color: var(--clr-gray-light);
   font-size: 1.3rem;
-=======
   border-top: 1px solid #2f2f2f;
 }
 
@@ -134,7 +119,6 @@ td:first-child {
 .fonte {
   color: #9ca3af;
   font-size: 1.2rem;
->>>>>>> origin/feat/metas-page
 }
 
 /* Status */
@@ -196,11 +180,8 @@ td:first-child {
 }
 
 .paginacao button:hover {
-<<<<<<< HEAD
   background: var(--clr-primary);
-=======
   background: #ccc;
->>>>>>> origin/feat/metas-page
 }
 
 .paginacao .ativo {

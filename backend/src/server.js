@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "../src/generated/prisma/index.js";
+// import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
@@ -40,37 +41,45 @@ app.get("/", (req, res) => {
 });
 
 // Register user
-app.post("/cadastro", validations.validationCreateUser, async (req, res) => {
-  try {
-    const { name, username, email, password } = req.body;
+app.post(
+  "/cadastro",
+  validate(validations.validationCreateUser),
+  async (req, res) => {
+    try {
+      const { name, username, email, password } = req.body;
 
-    // Verify if user exists
-    const exists = await prisma.user.findFirst({
-      where: { OR: [{ email }, { username }] },
-    });
+      // Verify if user exists
+      const exists = await prisma.user.findFirst({
+        where: { OR: [{ email }, { username }] },
+      });
 
-    if (exists) return res.status(400).json({ error: "Usuário já existe" });
+      if (exists) return res.status(400).json({ error: "Usuário já existe" });
 
-    // Password hash
-    const hashedPassword = await bcrypt.hash(password, 10);
+      // Password hash
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
-      data: { name, username, email, password: hashedPassword },
-    });
+      const user = await prisma.user.create({
+        data: { name, username, email, password: hashedPassword },
+      });
 
-    res.status(201).json({
-      message: "Usuário criado com sucesso",
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        username: user.username,
-      },
-    });
-  } catch (err) {
-    res.status(500).json({ error: "Erro interno" });
+      res.status(201).json({
+        message: "Usuário criado com sucesso",
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          username: user.username,
+        },
+      });
+    } catch (err) {
+      console.log("erro:", err);
+      res.status(500).json({ error: err.message });
+    }
+    // } catch (err) {
+    //   res.status(500).json({ error: "Erro interno" });
+    // }
   }
-});
+);
 
 // Login
 app.post("/login", validations.validationLoginUser, async (req, res) => {
