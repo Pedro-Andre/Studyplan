@@ -1,4 +1,5 @@
 import SideMenu from "../../components/SideMenu/SideMenu";
+import TopBar from "../../components/TopBar/TopBar";
 import AddTaskModal from "./AddTaskModal";
 import "./Goals.css";
 import { useEffect, useState } from "react";
@@ -70,132 +71,139 @@ function Goals() {
   return (
     <>
       <main className="view-container">
-        <SideMenu></SideMenu>
-        <div className="metas-container">
-          <div className="container-header">
-            <div className="titles">
-              <h1 className="gradient-text">Metas</h1>
+        <SideMenu />
+        <div className="content">
+          <TopBar />
+
+          <h2 className="gradient-text page-title small-title">Metas</h2>
+
+          <div className="metas-container">
+            <div className="centralizar-btn">
+              <AddTaskModal />
             </div>
-          </div>
-          <div className="centralizar-btn">
-            <AddTaskModal />
-          </div>
 
-          {/* Cards de resumo */}
-          <div className="cards-container">
-            <div className="card">
-              <div className="icons">
-                <HugeiconsIcon icon={Task01Icon} className="icon-style" />
+            {/* Cards de resumo */}
+            <div className="cards-container">
+              <div className="card">
+                <div className="icons">
+                  <HugeiconsIcon icon={Task01Icon} className="icon-style" />
+                </div>
+                <div className="desc">
+                  <h2>3</h2>
+                  <p>Total de metas</p>
+                </div>
               </div>
-              <div className="desc">
-                <h2>3</h2>
-                <p>Total de metas</p>
+              <div className="card">
+                <div className="icons">
+                  <HugeiconsIcon
+                    icon={AlertCircleIcon}
+                    className="icon-style"
+                  />
+                </div>
+                <div className="desc">
+                  <h2>1</h2>
+                  <p>Não iniciadas</p>
+                </div>
+              </div>
+              <div className="card">
+                <div className="icons">
+                  <HugeiconsIcon
+                    icon={BookmarkCheck01Icon}
+                    className="icon-style"
+                  />
+                </div>
+                <div className="desc">
+                  <h2>1</h2>
+                  <p>Metas finalizadas</p>
+                </div>
+              </div>
+              <div className="card">
+                <div className="icons">
+                  <HugeiconsIcon icon={HourglassIcon} className="icon-style" />
+                </div>
+                <div className="desc">
+                  <h2>7 hrs, 20 min</h2>
+                  <p>Horas acumuladas</p>
+                </div>
               </div>
             </div>
-            <div className="card">
-              <div className="icons">
-                <HugeiconsIcon icon={AlertCircleIcon} className="icon-style" />
-              </div>
-              <div className="desc">
-                <h2>1</h2>
-                <p>Não iniciadas</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="icons">
-                <HugeiconsIcon
-                  icon={BookmarkCheck01Icon}
-                  className="icon-style"
-                />
-              </div>
-              <div className="desc">
-                <h2>1</h2>
-                <p>Metas finalizadas</p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="icons">
-                <HugeiconsIcon icon={HourglassIcon} className="icon-style" />
-              </div>
-              <div className="desc">
-                <h2>7 hrs, 20 min</h2>
-                <p>Horas acumuladas</p>
-              </div>
-            </div>
-          </div>
 
-          {/* Tabela */}
-          <div className="tabela-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Suas metas</th>
-                  <th>Status</th>
-                  <th>Adicionada em</th>
-                  <th>Conclusão Estimada</th>
-                  <th>Prioridade</th>
-                  <th>Tempo</th>
-                </tr>
-              </thead>
-              <tbody>
-                {metas.map((meta) => (
-                  <tr key={meta.id}>
-                    <td>
-                      <div className="icons play">
-                        <HugeiconsIcon icon={PlayIcon} className="icon-style" />
-                      </div>
-                      <div className="descricao">
-                        <strong>{meta.titulo}</strong>
-                        <p className="fonte">{meta.fonte}</p>
-                      </div>
-                    </td>
-
-                    <td>
-                      <span
-                        className={`status ${
-                          meta.status === "Em Progresso"
-                            ? "progresso"
-                            : meta.status === "Finalizado"
-                            ? "finalizado"
-                            : "nao-iniciado"
-                        }`}
-                      >
-                        {meta.status}
-                      </span>
-                    </td>
-
-                    <td>{meta.dataAdicionada}</td>
-                    <td>{meta.dataConclusao}</td>
-
-                    <td>
-                      <span
-                        className={`prioridade ${
-                          meta.prioridade === "Alta"
-                            ? "alta"
-                            : meta.prioridade === "Médio"
-                            ? "media"
-                            : "baixa"
-                        }`}
-                      >
-                        {meta.prioridade}
-                      </span>
-                    </td>
-
-                    <td>{meta.tempo}</td>
+            {/* Tabela */}
+            <div className="tabela-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Suas metas</th>
+                    <th>Status</th>
+                    <th>Adicionada em</th>
+                    <th>Conclusão Estimada</th>
+                    <th>Prioridade</th>
+                    <th>Tempo</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {metas.map((meta) => (
+                    <tr key={meta.id}>
+                      <td>
+                        <div className="icons play">
+                          <HugeiconsIcon
+                            icon={PlayIcon}
+                            className="icon-style"
+                          />
+                        </div>
+                        <div className="descricao">
+                          <strong>{meta.titulo}</strong>
+                          <p className="fonte">{meta.fonte}</p>
+                        </div>
+                      </td>
 
-          {/* Paginação */}
-          <div className="centralizar-btn">
-            <div className="paginacao">
-              <button>Anterior</button>
-              <button className="ativo">1</button>
-              <button>2</button>
-              <button>3</button>
-              <button>Próx</button>
+                      <td>
+                        <span
+                          className={`status ${
+                            meta.status === "Em Progresso"
+                              ? "progresso"
+                              : meta.status === "Finalizado"
+                              ? "finalizado"
+                              : "nao-iniciado"
+                          }`}
+                        >
+                          {meta.status}
+                        </span>
+                      </td>
+
+                      <td>{meta.dataAdicionada}</td>
+                      <td>{meta.dataConclusao}</td>
+
+                      <td>
+                        <span
+                          className={`prioridade ${
+                            meta.prioridade === "Alta"
+                              ? "alta"
+                              : meta.prioridade === "Médio"
+                              ? "media"
+                              : "baixa"
+                          }`}
+                        >
+                          {meta.prioridade}
+                        </span>
+                      </td>
+
+                      <td>{meta.tempo}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Paginação */}
+            <div className="centralizar-btn">
+              <div className="paginacao">
+                <button>Anterior</button>
+                <button className="ativo">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Próx</button>
+              </div>
             </div>
           </div>
         </div>

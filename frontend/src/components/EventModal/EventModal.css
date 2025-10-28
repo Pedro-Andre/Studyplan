@@ -6,8 +6,9 @@
   transform: translate(-50%, -50%);
   background: var(--clr-black-light);
   width: 100%;
-  max-width: 60rem;
-  height: 35rem;
+  max-width: 55rem;
+  height: auto;
+  min-height: 35rem;
   border-radius: 1.5rem;
   color: var(--clr-white);
   z-index: 999;
@@ -21,10 +22,10 @@
   width: inherit;
   height: inherit;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  flex-direction: column;
-  padding: 1rem 0.5rem;
+  padding: 1.5rem 0.5rem;
 }
 
 .modal button {
@@ -37,9 +38,12 @@
   cursor: pointer;
   transition: all 0.3s;
   font-weight: 600;
-  /* margin-top: 5rem; */
 }
 
 .modal button:hover {
   scale: 0.95;
+}
+
+.modal button.cancel {
+  background: var(--clr-black-dark);
 }

@@ -1,5 +1,5 @@
 import "./MyCalendar.css";
-import SideMenu from "../../components/Sidemenu/Sidemenu";
+import SideMenu from "../../components/SideMenu/SideMenu.jsx";
 import TopBar from "../../components/TopBar/TopBar";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
@@ -9,12 +9,14 @@ import { useState, useRef, useEffect } from "react";
 import DefaultEvents from "../../components/DefaultEvents/DefaultEvents.js";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import AddEventForm from "../../components/AddEventForm/AddEventForm.jsx";
 import EventModal from "../../components/EventModal/EventModal.jsx";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowDown01Icon,
   ArrowLeft01Icon,
   ArrowRight01Icon,
+  Add01Icon,
 } from "@hugeicons/core-free-icons";
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
@@ -37,6 +39,7 @@ function MyCalendar() {
   const [view, setView] = useState("month");
   const [date, setDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const eventColorStyle = (event) => ({
     style: {
@@ -60,14 +63,24 @@ function MyCalendar() {
     setEvents(updateEvents);
   };
 
-  // abre o evento no calendário
-  const handleOpenEvent = (event) => {
-    setSelectedEvent(event);
-  };
+  // Modal do Formulario para add eventos
+  const handleOpenEvent = (event) => setSelectedEvent(event);
+  const handleCloseEvent = (event) => setSelectedEvent(null);
 
-  // fecha o evento no calendário
-  const handleCloseEvent = (event) => {
-    setSelectedEvent(null);
+  // Modal com form para add novos eventos
+  const handleOpenAddModal = () => setShowAddModal(true);
+  const handleCloseAddModal = () => setShowAddModal(false);
+
+  // Recebe o novo evento do formulário
+  const handleAddEvent = (newEvent) => {
+    const eventWithId = {
+      ...newEvent,
+      id: events.length + 1,
+      start: new Date(newEvent.start),
+      end: new Date(newEvent.end),
+    };
+    setEvents([...events, eventWithId]);
+    handleCloseAddModal();
   };
 
   // Nomes em português para os botões do calendário
@@ -92,8 +105,18 @@ function MyCalendar() {
         <SideMenu />
         <div className="content">
           <TopBar />
-          <h2 className="gradient-text calendar-title">Calendário</h2>
-          <div className="container">
+
+          <h2 className="gradient-text page-title">Calendário</h2>
+
+          <div className="calendar-container">
+            <button
+              className="add-task-btn add-btn"
+              onClick={handleOpenAddModal}
+            >
+              <HugeiconsIcon icon={Add01Icon} />
+              Adicionar Evento
+            </button>
+
             <DragAndDropCalendar
               date={date}
               view={view}
@@ -117,6 +140,13 @@ function MyCalendar() {
             />
             {selectedEvent && (
               <EventModal event={selectedEvent} onClose={handleCloseEvent} />
+            )}
+
+            {showAddModal && (
+              <AddEventForm
+                onAdd={handleAddEvent}
+                onClose={handleCloseAddModal}
+              />
             )}
           </div>
         </div>

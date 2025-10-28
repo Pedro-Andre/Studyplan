@@ -12,14 +12,13 @@
   --clr-gray: #6b7280;
 
   --clr-primary: #649ffd;
-  --clr-primary-light: #69c0f6;
-  --clr-current-day: #23498650;
+  --clr-primary-low-op: #649ffd40;
 
-  --clr-primary-highlight: #2329cc;
   --clr-highlight-attetion: #ffc664;
   --clr-highlight-success: #5ceab1;
   --clr-highlight-error: #f14c78;
 
+  --clr-input-border: 0.1rem solid #234986;
   --border-dark-mode: 0.1rem solid var(--clr-gray);
   --border-light-mode: 0.1rem solid var(--clr-white);
 
@@ -60,6 +59,39 @@ body {
   overflow-x: hidden;
 }
 
+input,
+select {
+  width: 100%;
+  height: 4rem;
+  border-radius: 1rem;
+  border: var(--border-dark-mode);
+  background: var(--clr-black-dark);
+  color: var(--clr-white);
+  outline: none;
+  transition: 0.2s;
+  padding: 0.5rem;
+}
+
+input:focus,
+select:focus {
+  border: var(--clr-input-border);
+  outline: none;
+}
+
+label {
+  width: 100%;
+  max-width: 40rem;
+  display: block;
+  margin-block: 1rem;
+  font-size: 1.6rem;
+  color: var(--clr-white);
+  cursor: pointer;
+}
+
+input[type="color"] {
+  padding: 1rem;
+}
+
 .view-container {
   display: flex;
   min-height: 100vh;
@@ -75,8 +107,12 @@ body {
   font-weight: 600;
 }
 
-.menus {
-  display: flex;
-  width: 100%;
-  background: #ff02;
+.page-title {
+  margin-left: 1rem;
+  background-size: 20rem;
+  margin-block: 2rem 1rem;
+}
+
+.small-title {
+  background-size: 10rem;
 }

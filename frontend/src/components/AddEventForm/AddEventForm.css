@@ -1,0 +1,35 @@
+.modal-form-container {
+  z-index: 9999 !important;
+  justify-content: start !important;
+  flex-direction: column !important;
+  row-gap: 1rem !important;
+}
+
+.modal-form {
+  color: var(--clr-primary);
+  row-gap: 2rem;
+}
+
+.modal-form .btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-form textarea {
+  width: 100%;
+  min-height: 6rem;
+  border-radius: 1rem;
+  border: var(--border-dark-mode);
+  background: var(--clr-black-dark);
+  color: var(--clr-white);
+  outline: none;
+  transition: 0.2s;
+  padding: 0.5rem;
+}
+
+.sub-title {
+  font-size: 2rem;
+}

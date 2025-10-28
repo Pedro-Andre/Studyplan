@@ -1,11 +1,16 @@
 import SideMenu from "../../components/SideMenu/SideMenu";
+import TopBar from "../../components/TopBar/TopBar";
 
 function Profile() {
   return (
     <main className="view-container">
       <SideMenu />
-      <h1>Studyplan</h1>
-      <h4>Perfil</h4>
+
+      <div className="content">
+        <TopBar />
+        <h2 className="gradient-text page-title small-title">Perfil</h2>
+        <div className="profile-container"></div>
+      </div>
     </main>
   );
 }

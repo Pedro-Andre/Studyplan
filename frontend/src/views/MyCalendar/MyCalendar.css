@@ -1,6 +1,6 @@
 .calendar {
   color: var(--clr-gray);
-  font-size: 1.4rem !important;
+  font-size: 1.4rem;
   border-radius: 1rem;
 }
 
@@ -11,30 +11,25 @@
   overflow: hidden;
 }
 
-.view-container .content > .container {
+.view-container .content > .calendar-container {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
 }
 
-.calendar-title {
-  margin-left: 1rem;
-  background-size: 20rem;
-  margin-block: 2rem 1rem;
+.add-btn {
+  position: absolute;
+  right: 1rem;
+  top: 8vh;
+  z-index: 999;
 }
 
 .calendar .rbc-today {
-  background: var(--clr-current-day);
+  background: var(--clr-primary-low-op);
 }
 
 .calendar .rbc-off-range-bg {
   background: var(--clr-black-dark);
-}
-
-.rbc-toolbar-label {
-  text-transform: capitalize;
-  font-size: 2rem;
-  color: var(--clr-primary);
 }
 
 .rbc-header {
@@ -70,7 +65,6 @@
 
 .calendar .rbc-agenda-table {
   border-radius: 1rem;
-  /* border: 0.2rem var(--border-dark-mode) !important; */
   border-collapse: separate !important;
 }
 
@@ -91,7 +85,6 @@
 
 /* Cada dia no calendário */
 .calendar .rbc-month-view .rbc-day-bg {
-  /* border-radius: 1.2rem; */
   border: var(--border-dark-mode);
 }
 
@@ -104,12 +97,6 @@
 /* linha que separa cada dia do mês*/
 .calendar .rbc-month-row {
   border: none !important;
-}
-
-/* número de cada dia no calendário */
-.calendar .rbc-btn-group button {
-  border: var(--border-dark-mode);
-  color: var(--clr-gray);
 }
 
 .calendar .rbc-btn-group .rbc-active,
@@ -141,7 +128,7 @@
 /* Estilizar os horários laterais */
 .calendar .rbc-time-header-gutter,
 .calendar .rbc-time-gutter {
-  background: var(--clr-current-day);
+  background: var(--clr-primary-low-op);
   color: var(--clr-primary);
 }
 
@@ -206,7 +193,7 @@
 /* Custom Dropdown */
 .custom-dropdown {
   position: relative;
-  z-index: 1000;
+  z-index: 777;
 }
 
 /* Texto dropdown */
@@ -214,10 +201,10 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.15rem 0.625rem;
+  padding: 0.625rem;
   background: var(--clr-black-light);
   border: var(--border-dark-mode);
-  border-radius: 0.6rem;
+  border-radius: 1rem;
   font-size: 1.4rem;
   color: var(--clr-white);
   cursor: pointer;
@@ -234,8 +221,8 @@
 .dropdown-btn .drop-icon {
   transition: transform 0.3s ease;
   color: var(--clr-white);
-  height: 3rem;
-  width: 3rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .dropdown-btn .drop-icon.open {
@@ -286,6 +273,28 @@
 .dropdown-menu li:active {
   background-color: var(--clr-white);
 }
+.calendar .rbc-row-content .rbc-row .rbc-date-cell button {
+  font-weight: bold;
+  /* font-size: 2rem; */
+}
+
+.calendar .rbc-row-content .rbc-row .rbc-date-cell.rbc-now.rbc-current button {
+  color: var(--clr-black) !important;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  background: var(--clr-primary);
+  border-radius: 50%;
+}
+
+/* Primeiro dia da última semana do mês lado esquerdo */
+.rbc-month-row:last-child .rbc-row-bg .rbc-day-bg:first-child {
+  border-radius: 0 0 0 1rem;
+}
+
+/* Último dia da última semana do mês lado direito */
+.rbc-day-bg:last-child.rbc-off-range-bg {
+  border-radius: 0 0 1rem 0;
+}
 
 /* Toolbar Navigation */
 .toolbar-navigation {
@@ -297,7 +306,7 @@
   padding: 0.7rem 1rem;
   background-color: var(--clr-black-light);
   border: var(--border-dark-mode);
-  border-radius: 0.6rem;
+  border-radius: 1rem;
   font-size: 1.4rem;
   font-weight: 500;
   color: var(--clr-white);

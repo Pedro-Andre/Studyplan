@@ -5,10 +5,10 @@
   justify-content: center;
   font-size: 1.7rem;
   background: var(--clr-gradient-light);
-  color: white;
+  color: var(--clr-white);
   border: none;
-  padding: 1.2rem 1.5rem;
-  border-radius: 8px;
+  padding: 1.2rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -31,45 +31,20 @@
 /* Caixa do modal */
 .modal-content {
   background: var(--clr-black);
-  color: #fff;
-  padding: 30px 55px;
-  border-radius: 12px;
-  width: 440px;
+  color: var(--clr-white);
+  padding: 3rem 5.5rem;
+  border-radius: 1rem;
+  width: 44rem;
   animation: fadeIn 0.3s ease;
 }
 
 .modal-content h2 {
-  font-size: 28px;
+  font-size: 2.8rem;
   text-align: center;
   background: var(--clr-gradient-light);
   --webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  font-size: 1.8rem;
-  color: #ccc;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #475569;
-  background: var(--clr-black-dark);
-  color: white;
-  outline: none;
-  transition: 0.2s;
-}
-
-input:focus,
-select:focus {
-  border-color: #234986;
+  margin-bottom: 2rem;
 }
 
 /* Prioridade */
@@ -77,26 +52,26 @@ select:focus {
   display: flex;
   justify-content: space-around;
   background: var(--clr-black-dark);
-  padding: 8px;
-  border-radius: 8px;
-  margin-top: 5px;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
 }
 
 .priority-options label {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
 /* Botão confirmar */
 .confirm-btn {
-  margin-top: 20px;
+  margin-top: 2rem;
   width: 100%;
-  padding: 10px;
+  padding: 1rem;
   background: var(--clr-gradient-light);
   border: none;
-  color: #fff;
-  border-radius: 8px;
+  color: var(--clr-white);
+  border-radius: 1rem;
   font-size: 2rem;
   cursor: pointer;
   transition: 0.3s;

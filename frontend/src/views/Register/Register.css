@@ -31,7 +31,7 @@
   top: 2rem;
 }
 
-.label {
+/* .label {
   width: 100%;
   max-width: 40rem;
   font-size: 2rem;
@@ -40,12 +40,12 @@
   row-gap: 1.2rem;
   color: var(--clr-white);
   cursor: pointer;
-}
+} */
 
-.label input {
+/* .label input {
   height: 5rem;
-  border-radius: 1.2rem;
-  border: 0.2rem solid var(--clr-gray-light);
+  border-radius: 1rem;
+  border: var(--border-dark-mode);
   font-family: var(--font);
   padding-inline: 1rem;
   font-size: 1.5rem;
@@ -55,9 +55,8 @@
 
 .label input:hover,
 .label input:focus {
-  outline: none;
   background: var(--clr-black-light);
-}
+} */
 
 .form-span {
   color: var(--clr-gray);
