@@ -10,7 +10,7 @@
   padding-inline: 0.6rem;
   transition: all 0.3s ease;
   border-radius: 1.5rem;
-  background: var(--clr-black);
+  /* background: var(--clr-black); */
   z-index: 99;
 }
 
@@ -74,6 +74,7 @@
 
 .nav-link.active {
   background: var(--clr-gradient-light);
+  color: var(--clr-btn-text);
   height: 5rem;
   border-radius: 1.2rem;
   box-shadow: var(--shadow-60);

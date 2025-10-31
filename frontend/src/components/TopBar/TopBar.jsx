@@ -1,6 +1,7 @@
 import "./TopBar.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ToggleDarkMode from "../ToggleDarkMode/ToggleDarkMode";
 
 function TopBar() {
   const [user, setUser] = useState(null);
@@ -37,9 +38,13 @@ function TopBar() {
           </span>
         )}
       </div>
-      <button className="logout-btn" onClick={handleLogout}>
-        Sair
-      </button>
+
+      <div className="btns-group">
+        <ToggleDarkMode />
+        <button className="logout-btn" onClick={handleLogout}>
+          Sair
+        </button>
+      </div>
     </div>
   );
 }

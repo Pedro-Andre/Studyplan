@@ -71,6 +71,8 @@ function Goals() {
   return (
     <>
       <main className="view-container">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
         <SideMenu />
         <div className="content">
           <TopBar />
@@ -89,7 +91,7 @@ function Goals() {
                   <HugeiconsIcon icon={Task01Icon} className="icon-style" />
                 </div>
                 <div className="desc">
-                  <h2>3</h2>
+                  <h2 className="number-task">3</h2>
                   <p>Total de metas</p>
                 </div>
               </div>
@@ -101,7 +103,7 @@ function Goals() {
                   />
                 </div>
                 <div className="desc">
-                  <h2>1</h2>
+                  <h2 className="number-task">1</h2>
                   <p>Não iniciadas</p>
                 </div>
               </div>
@@ -113,7 +115,7 @@ function Goals() {
                   />
                 </div>
                 <div className="desc">
-                  <h2>1</h2>
+                  <h2 className="number-task">1</h2>
                   <p>Metas finalizadas</p>
                 </div>
               </div>
@@ -121,8 +123,13 @@ function Goals() {
                 <div className="icons">
                   <HugeiconsIcon icon={HourglassIcon} className="icon-style" />
                 </div>
-                <div className="desc">
-                  <h2>7 hrs, 20 min</h2>
+                <div className="desc hours">
+                  <div className="value-hours">
+                    <h2 className="number-task">7</h2>
+                    <span>hrs,</span>
+                    <h2 className="number-task">20</h2>
+                    <span>min</span>
+                  </div>
                   <p>Horas acumuladas</p>
                 </div>
               </div>

@@ -4,6 +4,8 @@ import TopBar from "../../components/TopBar/TopBar";
 function Profile() {
   return (
     <main className="view-container">
+      <div className="orb orb-1"></div>
+      <div className="orb orb-2"></div>
       <SideMenu />
 
       <div className="content">

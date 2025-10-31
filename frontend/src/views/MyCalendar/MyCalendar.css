@@ -24,12 +24,16 @@
   z-index: 999;
 }
 
+.calendar .rbc-day-bg {
+  background: var(--clr-black-low-op);
+}
+
 .calendar .rbc-today {
   background: var(--clr-primary-low-op);
 }
 
 .calendar .rbc-off-range-bg {
-  background: var(--clr-black-dark);
+  background: var(--clr-black);
 }
 
 .rbc-header {
@@ -193,7 +197,7 @@
 /* Custom Dropdown */
 .custom-dropdown {
   position: relative;
-  z-index: 777;
+  z-index: 10;
 }
 
 /* Texto dropdown */

@@ -4,7 +4,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--clr-black-light);
+  background: var(--clr-black);
+  border: var(--border-dark-mode);
   width: 100%;
   max-width: 55rem;
   height: auto;
@@ -16,34 +17,76 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .modal {
   width: inherit;
   height: inherit;
+  min-height: 30rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  padding: 1.5rem 0.5rem;
+  justify-content: space-between;
+  padding: 1.5rem;
 }
 
-.modal button {
+.modal .btn {
   width: 10rem;
   height: 4rem;
-  background: var(--clr-black);
-  color: var(--clr-primary);
+  background: var(--clr-black-light);
+  color: var(--clr-white);
   border: var(--border-dark-mode);
   border-radius: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-  font-weight: 600;
+  font-weight: 800;
+}
+.modal .btn.save {
+  background: var(--clr-gradient-light);
+  border: none;
 }
 
-.modal button:hover {
+.modal .btn:hover {
   scale: 0.95;
 }
 
-.modal button.cancel {
+.modal .btn.cancel {
   background: var(--clr-black-dark);
+}
+
+.modal-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: start;
+  row-gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.modal-item .item {
+  font-size: 1.3rem;
+  color: var(--clr-gray-light);
+}
+
+.modal .event-name {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--clr-white);
+}
+
+.modal .event-desc {
+  color: var(--clr-gray-light);
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: var(--border-dark-mode);
+  width: 100%;
+  border-radius: 1vh;
+  padding: 1rem;
+}
+
+.modal .event-start,
+.modal .event-end {
+  font-size: 1.4rem;
 }

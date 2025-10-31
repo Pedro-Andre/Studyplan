@@ -5,12 +5,14 @@
   justify-content: center;
   font-size: 1.7rem;
   background: var(--clr-gradient-light);
-  color: var(--clr-white);
+  color: var(--clr-btn-text);
   border: none;
   padding: 1.2rem;
   border-radius: 1rem;
   cursor: pointer;
+  z-index: 3;
   transition: 0.2s;
+  font-weight: 500;
 }
 
 .add-task-btn:hover {
@@ -21,7 +23,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--clr-modal-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,36 +33,40 @@
 /* Caixa do modal */
 .modal-content {
   background: var(--clr-black);
+  border: var(--border-dark-mode);
   color: var(--clr-white);
-  padding: 3rem 5.5rem;
+  padding: 2rem 3.5rem;
   border-radius: 1rem;
-  width: 44rem;
+  width: 100%;
+  max-width: 50rem;
   animation: fadeIn 0.3s ease;
-}
-
-.modal-content h2 {
-  font-size: 2.8rem;
-  text-align: center;
-  background: var(--clr-gradient-light);
-  --webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 2rem;
 }
 
 /* Prioridade */
 .priority-options {
   display: flex;
   justify-content: space-around;
-  background: var(--clr-black-dark);
+  /* background: var(--clr-black-dark); */
   padding: 0.8rem;
   border-radius: 1rem;
-  margin-top: 0.5rem;
+  gap: 1rem;
 }
 
-.priority-options label {
+.priority-title {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.priority-options .radio-input {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+}
+
+.priority-options .radio-input input[type="radio"] {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
 }
 
 /* Botão confirmar */
@@ -73,12 +79,13 @@
   color: var(--clr-white);
   border-radius: 1rem;
   font-size: 2rem;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .confirm-btn:hover {
-  opacity: 0.9;
+  scale: 0.95;
 }
 
 /* Animação */

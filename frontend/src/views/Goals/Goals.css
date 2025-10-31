@@ -19,7 +19,8 @@
 
 .card {
   background: var(--clr-black-dark);
-  padding: 1.5rem 2.5rem;
+  border: var(--border-dark-mode);
+  padding: 1.5rem 0.5rem;
   border-radius: 10px;
   flex: 1;
   min-width: 180px;
@@ -28,81 +29,104 @@
   gap: 1rem;
 }
 
-.card h2 {
-  font-size: 3rem;
-  color: white;
-  margin: 0;
-}
-
 .centralizar-btn {
   display: flex;
   justify-content: flex-end;
 }
 
+.desc .number-task {
+  font-size: 2.4rem;
+  font-weight: 700;
+  width: 100%;
+}
+
+.desc.hours {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.desc.desc.hours .value-hours {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.desc.desc.hours .value-hours span {
+  display: inline-block;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-start;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--clr-gray);
+}
+
 /* Tabela */
 .tabela-container {
   background: var(--clr-black-dark);
+  border: var(--border-dark-mode);
   border-radius: 1.2rem;
-  padding: 1rem;
-  box-shadow: var(--shadow-60);
+  padding: 0 1rem 1rem 1rem;
+  /* box-shadow: var(--shadow-60); */
   width: 100%;
   overflow-x: auto;
-  /* background: #ff02; */
-  margin-right: 1.6rem;
 }
 
 table {
   width: 100%;
-  padding: 1rem;
   min-width: 90rem;
   border-collapse: collapse;
-  /* background: #f302; */
-  text-align: left;
+  text-align: center;
 }
 
 th {
   font-size: 1.5rem;
-  color: var(--clr-gray);
+  color: var(--clr-gray-light);
   font-weight: 600;
-  padding: 0.8rem;
+  text-align: center;
+  padding: 1rem;
 }
 
 td {
-  padding: 1rem;
-  border-top: var(--border-light-mode);
+  padding: 1rem 0.5rem;
+  border-top: var(--border-dark-mode);
 }
 
 .fonte {
   color: var(--clr-gray-light);
   font-size: 1.3rem;
-  border-top: 1px solid #2f2f2f;
+  margin-top: 0.6rem;
+  font-weight: 600;
 }
 
 /* ícone + descrição */
 td:first-child {
   display: flex;
   align-items: center;
+  text-align: left;
   gap: 1rem;
 }
 
 /* Círculo do ícone */
 .icons {
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--clr-primary-low-op);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  transition: background 0.3s ease, transform 0.3s ease;
+  /* transition: background 0.3s ease, transform 0.3s ease; */
 }
 
 /* Ícon */
 .icon-style {
-  height: 3rem;
-  width: 3rem;
-  color: #5060a3;
+  height: 2.7rem;
+  width: 2.7rem;
+  color: var(--clr-primary);
 }
 
 /* Efeito hover */
@@ -113,12 +137,12 @@ td:first-child {
 
 /* Texto ao lado do ícone */
 .descricao strong {
-  color: #ffffff;
+  color: var(--clr-white);
   font-size: 1.4rem;
 }
 
 .fonte {
-  color: #9ca3af;
+  color: var(--clr-gray);
   font-size: 1.2rem;
 }
 
@@ -126,7 +150,7 @@ td:first-child {
 .status {
   font-weight: 500;
   padding: 0.3rem 0.8rem;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   font-size: 1.4rem;
 }
 
@@ -172,7 +196,7 @@ td:first-child {
 
 .paginacao button {
   background: var(--clr-black-dark);
-  border: 0;
+  border: var(--border-dark-mode);
   border-radius: 0.6rem;
   padding: 0.8rem 1.2rem;
   cursor: pointer;
@@ -181,13 +205,13 @@ td:first-child {
 }
 
 .paginacao button:hover {
-  background: var(--clr-primary);
-  background: #ccc;
+  background: var(--clr-black);
+  color: var(--clr-white);
 }
 
 .paginacao .ativo {
   background: var(--clr-gradient-light);
-  color: white;
+  color: var(--clr-btn-text);
   background-position: center;
   font-weight: 700;
   border: none;

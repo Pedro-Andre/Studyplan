@@ -7,6 +7,7 @@
 
 .modal-form {
   color: var(--clr-primary);
+  z-index: 9999 !important;
   row-gap: 2rem;
 }
 
@@ -16,6 +17,10 @@
   justify-content: space-between;
   gap: 1rem;
   margin-top: 2rem;
+}
+
+.modal-form .btn-group .save {
+  color: var(--clr-btn-text);
 }
 
 .modal-form textarea {
@@ -32,4 +37,19 @@
 
 .sub-title {
   font-size: 2rem;
+  text-align: center;
+}
+
+.date-input {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.8rem;
+}
+
+.date-input input[type="date"] {
+  flex: 2;
+}
+
+.date-input input[type="time"] {
+  flex: 1;
 }

@@ -1,0 +1,74 @@
+.dark_mode {
+  display: flex;
+  align-items: center;
+}
+
+.dark_mode_label {
+  width: 6.5rem;
+  height: 3.5rem;
+  position: relative;
+  display: block;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  border-radius: 100vw;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 !important;
+}
+
+.dark_mode_label:after {
+  content: "";
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  top: 0.4rem;
+  right: 0.2rem;
+  background: var(--clr-gradient-light);
+  border-radius: 100vw;
+  transition: 0.3s;
+}
+
+.dark_mode_input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+.dark_mode_input:checked + .dark_mode_label {
+  background: var(--clr-black-dark);
+}
+
+.dark_mode_input:checked + .dark_mode_label:after {
+  right: 3rem;
+  transform: translateX(-20%);
+}
+
+.dark_mode_label:active:after {
+  width: 3rem;
+}
+
+.dark_mode_label .link-icon {
+  position: absolute;
+  width: 2rem;
+  top: 0.5rem;
+  z-index: 100;
+}
+
+.dark_mode_label svg.link-icon.sun {
+  left: 0.5rem;
+  transition: 0.3s;
+}
+
+.dark_mode_label svg.link-icon.moon {
+  left: 3.8rem;
+  fill: var(--clr-white);
+  transition: 0.3s;
+}
+
+.dark_mode_input:checked + .dark_mode_label svg.link-icon.sun {
+  fill: var(--clr-white);
+}
+
+.dark_mode_input:checked + .dark_mode_label svg.link-icon.moon {
+  fill: none;
+}

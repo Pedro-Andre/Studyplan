@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LightLogo from "../../components/LightLogo/LightLogo";
+import Logo from "../../components/Logo/Logo";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ViewOffSlashIcon } from "@hugeicons/core-free-icons";
 import { useState } from "react";
@@ -43,7 +43,7 @@ function Login() {
   return (
     <div className="form-container">
       <form className="form" onSubmit={handleLogin}>
-        <LightLogo />
+        <Logo />
         <h4 className="form-title gradient-text">Login</h4>
 
         {/* Shows an Error or Succes when trying to login */}

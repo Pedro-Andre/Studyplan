@@ -1,6 +1,6 @@
 import "./Register.css";
 import { Link } from "react-router-dom";
-import LightLogo from "../../components/LightLogo/LightLogo";
+import Logo from "../../components/Logo/Logo";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ViewOffSlashIcon } from "@hugeicons/core-free-icons";
 import { useState } from "react";
@@ -42,7 +42,7 @@ function Register() {
   return (
     <div className="form-container">
       <form className="form" onSubmit={handleRegister}>
-        <LightLogo className="a" />
+        <Logo className="a" />
         <h4 className="form-title gradient-text">Cadastro</h4>
 
         {/* Shows an Error or Success when trying to register a User */}

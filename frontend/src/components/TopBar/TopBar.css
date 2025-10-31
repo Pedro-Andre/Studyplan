@@ -51,3 +51,11 @@
 .title {
   color: var(--clr-white);
 }
+
+.btns-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+}

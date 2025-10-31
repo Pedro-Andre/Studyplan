@@ -10,7 +10,7 @@ import {
   ArrowLeft01Icon,
 } from "@hugeicons/core-free-icons";
 import { NavLink } from "react-router-dom";
-import LightLogo from "../LightLogo/LightLogo";
+import Logo from "../Logo/Logo";
 
 function SideMenu() {
   const [expanded, setExpanded] = useState(
@@ -25,7 +25,7 @@ function SideMenu() {
     <div className={`menu-container ${expanded ? "expanded" : ""}`}>
       <div className="logo">
         <NavLink to="/" end>
-          <LightLogo />
+          <Logo />
         </NavLink>
       </div>
       <div className="links-container">

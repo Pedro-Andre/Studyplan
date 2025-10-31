@@ -11,9 +11,7 @@ function App() {
 export default App;
 
 /*
-<HugeiconsIcon icon={Sun01Icon} />
-<HugeiconsIcon icon={Moon02Icon} />
-<HugeiconsIcon icon={ArrowRight01Icon} />
+
 <HugeiconsIcon icon={MoreVerticalCircle01Icon} />
 <HugeiconsIcon icon={LeftToRightListBulletIcon} />
 <HugeiconsIcon icon={CheckmarkCircle04Icon} />

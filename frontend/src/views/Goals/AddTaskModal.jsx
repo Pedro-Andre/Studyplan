@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Add01Icon,
-} from "@hugeicons/core-free-icons";
+import { Add01Icon } from "@hugeicons/core-free-icons";
 import "./AddTaskModal.css";
-
 
 function AddTaskModal() {
   const [open, setOpen] = useState(false);
@@ -19,7 +16,7 @@ function AddTaskModal() {
       {open && (
         <div className="modal-overlay" onClick={() => setOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Adicionar Tarefa</h2>
+            <h2 className="gradient-text sub-title">Adicionar Tarefa</h2>
 
             <form>
               <label>Nome da tarefa</label>
@@ -39,16 +36,17 @@ function AddTaskModal() {
                 <option>3h</option>
               </select>
 
-              <label>Nível de prioridade</label>
+              <label className="priority-title">Nível de prioridade</label>
               <div className="priority-options">
-                <label>
+                <label className="radio-input">
                   <input type="radio" name="priority" defaultChecked /> Baixo
                 </label>
-                <label>
+                <label className="radio-input">
                   <input type="radio" name="priority" /> Médio
                 </label>
-                <label>
-                  <input type="radio" name="priority" /> Alta
+                <label className="radio-input">
+                  <input type="radio" name="priority" />
+                  Alta
                 </label>
               </div>
 
