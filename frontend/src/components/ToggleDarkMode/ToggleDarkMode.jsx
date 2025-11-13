@@ -32,7 +32,7 @@ const ToggleDarkMode = () => {
         onChange={toggleTheme}
         defaultChecked={selectedTheme === "dark"}
       />
-      <label className="dark_mode_label" for="darkmode-toggle">
+      <label className="dark_mode_label" htmlFor="darkmode-toggle">
         <HugeiconsIcon icon={Sun01Icon} className="link-icon sun" />
         <HugeiconsIcon icon={Moon02Icon} className="link-icon moon" />
       </label>

@@ -4,13 +4,6 @@
   border-radius: 1rem;
 }
 
-.view-container .content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-}
-
 .view-container .content > .calendar-container {
   flex: 1;
   padding: 1rem;
@@ -34,6 +27,7 @@
 
 .calendar .rbc-off-range-bg {
   background: var(--clr-black);
+  background: #9fbcce44;
 }
 
 .rbc-header {
@@ -43,6 +37,28 @@
   font-weight: 500 !important;
   padding-block: 1rem !important;
   background: var(--clr-black-light);
+}
+
+/* Dias da semana toolbar calendario */
+.rbc-time-view .rbc-time-header .rbc-time-header-content .rbc-row .rbc-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rbc-time-view
+  .rbc-time-header
+  .rbc-time-header-content
+  .rbc-row
+  .rbc-header
+  span {
+  text-transform: capitalize;
+}
+
+.rbc-header .rbc-button-link {
+  display: flex;
+  align-items: center;
+  padding-block: 1rem !important;
 }
 
 .rbc-header:first-child {
@@ -60,31 +76,71 @@
   border: var(--border-dark-mode);
 }
 
-/* agenda */
+/* Container principal da Agenda*/
 .calendar .rbc-agenda-view {
   border-radius: 1rem;
-  border-collapse: initial !important;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: visible;
+  border: var(--border-dark-mode);
+  width: 100%;
+}
+
+/* Tabela da Agenda */
+.calendar .rbc-agenda-view .rbc-agenda-table {
+  border: var(--border-dark-mode);
+  width: 100%;
+  table-layout: auto;
+  min-width: 100%;
 }
 
 .calendar .rbc-agenda-table {
-  border-radius: 1rem;
-  border-collapse: separate !important;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .calendar .rbc-agenda-content {
   border-radius: 1rem;
+  overflow-x: scroll;
 }
 
-.calendar .rbc-agenda-table thead {
-  border-radius: 1rem;
+/* Cabeçalho da Agenda */
+.calendar .rbc-agenda-table thead tr .rbc-header {
+  text-align: center !important;
+  max-width: 100%;
+  white-space: normal !important; /* Permite quebra de linha */
+  word-wrap: break-word !important; /* Quebra palavras longas */
+  overflow-wrap: break-word !important;
+  padding-block: 1rem !important;
+  min-width: fit-content;
 }
 
-.calendar .rbc-agenda-event-cell,
+/* Células da Agenda - Responsividade */
 .calendar .rbc-agenda-date-cell,
+.calendar .rbc-agenda-time-cell,
+.calendar .rbc-agenda-event-cell {
+  background: var(--clr-black) !important;
+  color: var(--clr-white);
+  padding-block: 1rem !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar .rbc-agenda-table tr {
+  min-width: 100px;
+  border: none !important;
+  text-transform: capitalize;
+  border: var(--border-dark-mode) !important;
+}
+
 .calendar .rbc-agenda-time-cell {
-  border-collapse: collapse !important;
-  border: var(--border-dark-mode);
+  border: var(--border-dark-mode) !important;
+  min-width: 12rem;
+}
+
+.calendar .rbc-agenda-event-cell {
+  word-break: break-word; /* Quebra palavras longas */
 }
 
 /* Cada dia no calendário */
@@ -219,7 +275,6 @@
 
 .dropdown-btn:hover {
   background: var(--clr-black);
-  border: var(--border-dark-mode);
 }
 
 .dropdown-btn .drop-icon {
@@ -336,31 +391,18 @@
   .toolbar-container {
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start;
   }
 
   .drop-container {
     width: 100%;
-    flex-direction: column;
+    justify-content: end;
+    margin-inline: auto;
     gap: 0.75rem;
   }
 
   .toolbar-navigation {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .dropdown-btn,
-  .days-btn {
-    width: 100%;
-  }
-
-  .custom-dropdown {
-    width: 100%;
-  }
-
-  .dropdown-menu {
-    width: 100%;
   }
 }
 

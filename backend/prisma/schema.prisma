@@ -1,3 +1,37 @@
+// generator client {
+//   provider = "prisma-client-js"
+//   output   = "../src/generated/prisma"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id       String @id @default(uuid())
+//   name     String 
+//   username String @unique
+//   email    String @unique
+//   password String
+//   createdAt DateTime @default(now())
+//   goals     Goals[] 
+  
+// }
+
+
+
+// model Goals {
+//   id       String @id @default(uuid())
+//   name     String
+//   category String?
+//   priority String
+//   createdAt DateTime @default(now())
+//   finishBy DateTime
+//   userId  String  
+//   user User @relation(fields: [userId], references: [id])
+// }
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -9,19 +43,42 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String 
-  username String @unique
-  email    String @unique
-  password String
+  id        String   @id @default(uuid())
+  name      String 
+  username  String   @unique
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
+  
+  // Relacionamentos
+  goals     Goals[] 
+  events    Event[]  
 }
 
 model Goals {
-  id       String @id @default(uuid())
-  name     String
-  category String?
-  priority String
+  id        String   @id @default(uuid())
+  name      String
+  category  String?
+  priority  String
   createdAt DateTime @default(now())
-  finishBy DateTime
+  finishBy  DateTime
+  userId    String  
+  
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id        String   @id @default(uuid())  
+  title     String
+  start     DateTime
+  end       DateTime
+  desc      String?
+  color     String   @default("#2196f3")
+  userId    String  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("events")
 }

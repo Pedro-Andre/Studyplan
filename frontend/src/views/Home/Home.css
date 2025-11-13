@@ -1,0 +1,487 @@
+/* 
+.home-container {
+  padding: 1rem 1.2rem;
+  color: var(--clr-white);
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 1.2rem;
+}
+
+  Base card  
+section.card {
+  background: var(--clr-black-dark);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--clr-white);
+  margin-bottom: 1rem;
+}
+
+  Ações Rápidas  
+.card.quick-actions {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+.actions-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.action-btn {
+  background: var(--clr-black);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  width: 100%;
+  height: 8rem;
+  padding: 1rem 1rem 1rem 2rem;
+  color: var(--clr-white);
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.action-btn:hover {
+  background: var(--clr-primary-low-op);
+  border-color: var(--clr-primary);
+}
+
+ ===== Gráfico de Barras ===== 
+.chart-bar {
+  grid-column: 1 / 3;
+  grid-row: 2;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 28rem;
+  position: relative;
+  flex: 1;
+}
+
+ ===== Gráfico de Rosca ===== 
+.chart-doughnut {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.chart-wrapper-doughnut {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.3rem;
+  color: var(--clr-gray-light);
+}
+
+.legend .dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend .dot.green {
+  background: rgba(34, 197, 94, 0.8);
+}
+
+.legend .dot.blue {
+  background: rgba(59, 130, 246, 0.8);
+}
+
+.legend .dot.purple {
+  background: rgba(168, 85, 247, 0.8);
+}
+
+ ===== Metas do Dia ===== 
+.card.goals-card {
+  grid-column: 2 / 3;
+  grid-row: 2;
+}
+
+.goals-header {
+  display: flex;
+  width: 100%;
+  row-gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.month-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  color: var(--clr-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  max-width: 15rem;
+  justify-content: space-between;
+}
+
+.month-select:hover {
+  background: var(--clr-black);
+}
+
+.goals-list {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.goal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.goal-label {
+  font-size: 1.3rem;
+  color: var(--clr-white);
+  font-weight: 500;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.8rem;
+  background: var(--clr-black);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(139, 92, 246, 0.8)
+  );
+  border-radius: 1rem;
+  transition: width 0.3s ease;
+}
+
+.goal-percentage {
+  font-size: 1.2rem;
+  color: var(--clr-gray-light);
+  text-align: right;
+}
+
+ ===== Gráfico de Área ===== 
+.chart-area {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+ ===== Responsividade ===== 
+@media (max-width: 1200px) {
+  .home-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  .chart-bar {
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
+
+  .chart-doughnut {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .goals-card {
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+
+  .chart-area {
+    grid-column: 1 / 3;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .quick-actions,
+  .chart-bar,
+  .chart-doughnut,
+  .goals-card,
+  .chart-area {
+    grid-column: 1 / 2;
+    grid-row: auto;
+  }
+
+  .chart-wrapper {
+    height: 220px;
+  }
+
+  .chart-wrapper-doughnut {
+    height: 200px;
+  }
+
+  .card-title {
+    font-size: 1.4rem;
+  }
+
+  .action-btn {
+    font-size: 1.3rem;
+    padding: 1.2rem;
+  }
+}
+
+ ===== Fix para Canvas do Chart.js ===== 
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+  
+/* ===== GRID PRINCIPAL ===== */
+.home-container {
+  color: var(--clr-white);
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+/* ===== BASE CARD ===== */
+section.card {
+  background: var(--clr-black-dark);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 33rem;
+}
+
+/* ===== ALTURA PADRÃO DOS CONTAINERS DE GRÁFICO ===== */
+.card.chart-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart-wrapper,
+.chart-wrapper-doughnut {
+  width: 100%;
+  flex: 1;
+  min-height: 27rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-wrapper-doughnut {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== ORGANIZAÇÃO DOS CARDS ===== */
+.quick-actions {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  max-height: 30rem;
+  overflow-y: auto;
+}
+
+.actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.action-btn {
+  background: var(--clr-black);
+  border: var(--border-dark-mode);
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  color: var(--clr-white);
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.action-btn .icon {
+  font-size: 2rem;
+}
+
+.action-btn:hover {
+  background: var(--clr-primary-low-op);
+  border-color: var(--clr-primary);
+  transform: translateY(-2px);
+}
+
+.chart-bar {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+.chart-doughnut {
+  grid-column: 1 / 2;
+  grid-row: 2;
+}
+
+.goals-card {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.chart-area {
+  grid-column: 3 / 4;
+  grid-row: 2;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1400px) {
+  .home-container {
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .chart-card {
+    max-height: 320px;
+  }
+
+  .chart-wrapper,
+  .chart-wrapper-doughnut {
+    max-height: 240px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .home-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .chart-bar {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  .chart-doughnut {
+    grid-column: 1 / 2;
+    grid-row: 3;
+  }
+
+  .goals-card {
+    grid-column: 2 / 3;
+    grid-row: 3;
+  }
+
+  .chart-area {
+    grid-column: 1 / 3;
+    grid-row: 4;
+  }
+
+  .chart-card {
+    max-height: 300px;
+  }
+
+  .chart-wrapper,
+  .chart-wrapper-doughnut {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .chart-card {
+    max-height: 280px;
+  }
+
+  .chart-wrapper,
+  .chart-wrapper-doughnut {
+    max-height: 200px;
+  }
+}
+
+/* ===== FIX PARA CANVAS ===== */
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
