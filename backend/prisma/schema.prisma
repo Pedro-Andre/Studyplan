@@ -9,19 +9,23 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String 
-  username String @unique
-  email    String @unique
-  password String
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
+  name      String
+  goals     Goals[]
 }
 
 model Goals {
-  id       String @id @default(uuid())
-  name     String
-  category String?
-  priority String
-  createdAt DateTime @default(now())
-  finishBy DateTime
+  id            String    @id @default(uuid())
+  name          String
+  category      String?
+  priority      String
+  finishBy      DateTime?
+  userId        String
+  status        String    @default("Não Iniciado")
+  remainingTime Int
+  user          User      @relation(fields: [userId], references: [id])
 }

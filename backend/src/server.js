@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 import * as validations from "./middlewares/validations.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
+import goalsRoutes from "./routes/goalsRoutes.js"; 
 
 const app = express();
 const prisma = new PrismaClient();
@@ -128,5 +129,8 @@ app.get("/calendario", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Erro interno" });
   }
 });
+
+// Metas
+app.use("/goals", goalsRoutes);
 
 app.listen(3000, () => console.log("Server rodando na porta 3000 🚀"));

@@ -1,5 +1,5 @@
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; //ver melhor
 import Logo from "../../components/Logo/Logo";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ViewOffSlashIcon } from "@hugeicons/core-free-icons";
