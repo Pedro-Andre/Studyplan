@@ -50,37 +50,35 @@ function EventModal({ event, onClose, onDelete }) {
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         <div className="modal">
           <div className="modal-item">
-            <h2 className="gradient-text sub-title">{event.title}</h2>
-            <button className="close-btn" onClick={onClose}>
-              ✕
-            </button>
+            <h2 className="gradient-text sub-title event-name">{event.title}</h2>
           </div>
 
-          <div className="modal-body">
-            <div className="event-detail">
-              <strong>Início:</strong>
-              <span>
+          <div className="modal-item">
+            {event.desc && (
+              <div className="event-detail">
+                <p className="item">Descrição:</p>
+                <p className="event-desc">{event.desc}</p>
+              </div>
+            )}
+          </div>
+              
+            <div className="modal-item">
+              <p className="item">Início:</p>
+              <p className="event-start">
                 {format(event.start, "dd/MM/yyyy 'às' HH:mm", {
                   locale: ptBR,
                 })}
-              </span>
-            </div>
+              </p>
+            
 
-            <div className="event-detail">
-              <strong>Fim:</strong>
-              <span>
+            <div className="modal-item">
+              <p className="item">Fim:</p>
+              <p className="event-end">
                 {format(event.end, "dd/MM/yyyy 'às' HH:mm", {
                   locale: ptBR,
                 })}
-              </span>
+              </p>
             </div>
-
-            {event.desc && (
-              <div className="event-detail">
-                <strong>Descrição:</strong>
-                <p>{event.desc}</p>
-              </div>
-            )}
 
             <div className="event-detail">
               <strong>Cor:</strong>

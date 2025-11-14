@@ -332,6 +332,7 @@
 .dropdown-menu li:active {
   background-color: var(--clr-white);
 }
+
 .calendar .rbc-row-content .rbc-row .rbc-date-cell button {
   font-weight: bold;
   /* font-size: 2rem; */

@@ -87,7 +87,7 @@ function Home() {
           font: { size: 12 },
         },
         grid: {
-          color: "rgba(255,255,255,0.05)",
+          color: "#ffffff0d",
         },
         border: {
           display: false,
@@ -102,11 +102,7 @@ function Home() {
     datasets: [
       {
         data: [45, 35, 20],
-        backgroundColor: [
-          "rgba(34, 197, 94, 0.8)",
-          "rgba(59, 130, 246, 0.8)",
-          "rgba(168, 85, 247, 0.8)",
-        ],
+        backgroundColor: ["#22c55ecc", "#3b82f6cc", "#a855f7cc"],
         borderWidth: 0,
         borderRadius: 4,
       },
@@ -123,11 +119,11 @@ function Home() {
         display: false,
       },
       tooltip: {
-        backgroundColor: "rgba(15, 23, 42, 0.95)",
+        backgroundColor: "#0f172af2",
         padding: 12,
         titleColor: "#cbd5e1",
         bodyColor: "#e2e8f0",
-        borderColor: "rgba(99, 102, 241, 0.3)",
+        borderColor: "#6366f14d",
         borderWidth: 1,
       },
     },
@@ -154,11 +150,11 @@ function Home() {
         label: "Metas Concluídas",
         data: [5, 8, 12, 15, 18, 22, 28, 32, 38, 42, 48, 55],
         fill: true,
-        backgroundColor: "rgba(99, 102, 241, 0.2)",
-        borderColor: "rgba(99, 102, 241, 0.8)",
+        backgroundColor: "#6366f133",
+        borderColor: "#6366f1cc",
         borderWidth: 2,
         tension: 0.4,
-        pointBackgroundColor: "rgba(99, 102, 241, 1)",
+        pointBackgroundColor: "#6366f1ff",
         pointBorderColor: "#fff",
         pointBorderWidth: 2,
         pointRadius: 4,
@@ -176,11 +172,11 @@ function Home() {
         display: false,
       },
       tooltip: {
-        backgroundColor: "rgba(15, 23, 42, 0.95)",
+        backgroundColor: "#0f172af2",
         padding: 12,
         titleColor: "#cbd5e1",
         bodyColor: "#e2e8f0",
-        borderColor: "rgba(99, 102, 241, 0.3)",
+        borderColor: "#6366f14d",
         borderWidth: 1,
       },
     },
@@ -194,7 +190,7 @@ function Home() {
           display: false,
         },
         border: {
-          color: "rgba(255,255,255,0.1)",
+          color: "#ffffff1a",
         },
       },
       y: {
@@ -203,7 +199,7 @@ function Home() {
           font: { size: 12 },
         },
         grid: {
-          color: "rgba(255,255,255,0.05)",
+          color: "#ffffff0d",
         },
         border: {
           display: false,
@@ -255,20 +251,22 @@ function Home() {
           {/* Progresso das metas (Doughnut) */}
           <section className="card chart-card chart-doughnut">
             <h3 className="card-title">Progresso das metas</h3>
-            <div className="chart-wrapper-doughnut">
-              <Doughnut data={doughnutData} options={doughnutOptions} />
+            <div className="doughnut-container">
+              <div className="chart-wrapper-doughnut">
+                <Doughnut data={doughnutData} options={doughnutOptions} />
+              </div>
+              <ul className="legend">
+                <li>
+                  <span className="dot green"></span>Concluídas
+                </li>
+                <li>
+                  <span className="dot purple"></span>Para fazer
+                </li>
+                <li>
+                  <span className="dot blue"></span>Em andamento
+                </li>
+              </ul>
             </div>
-            <ul className="legend">
-              <li>
-                <span className="dot green"></span>Concluídas
-              </li>
-              <li>
-                <span className="dot blue"></span>Em andamento
-              </li>
-              <li>
-                <span className="dot purple"></span>Para fazer
-              </li>
-            </ul>
           </section>
 
           {/* Metas do dia */}
