@@ -1,4 +1,3 @@
-import React from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Sun01Icon, Moon02Icon } from "@hugeicons/core-free-icons";
 import "./ToggleDarkMode.css";

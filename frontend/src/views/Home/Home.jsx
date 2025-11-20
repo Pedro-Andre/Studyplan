@@ -21,6 +21,7 @@ import {
   CheckmarkSquare03Icon,
   Clock01Icon,
 } from "@hugeicons/core-free-icons";
+import { NavLink } from "react-router-dom";
 
 // Registrar módulos do Chart.js
 ChartJS.register(
@@ -44,7 +45,7 @@ function Home() {
       {
         label: "Horas dedicadas",
         data: [50, 30, 60, 80, 25],
-        backgroundColor: "rgba(99, 102, 241, 0.8)",
+        backgroundColor: "#649ffd",
         borderRadius: 8,
         barThickness: 40,
       },
@@ -60,34 +61,34 @@ function Home() {
         display: false,
       },
       tooltip: {
-        backgroundColor: "rgba(15, 23, 42, 0.95)",
+        backgroundColor: "#0f172af2",
         padding: 12,
-        titleColor: "#cbd5e1",
-        bodyColor: "#e2e8f0",
-        borderColor: "rgba(99, 102, 241, 0.3)",
+        titleColor: "#eee",
+        bodyColor: "#eee",
+        borderColor: "#6366f14d",
         borderWidth: 1,
       },
     },
     scales: {
       x: {
         ticks: {
-          color: "#94a3b8",
-          font: { size: 12 },
+          color: "#6b7280",
+          font: { size: 12, weight: 600 },
         },
         grid: {
           display: false,
         },
         border: {
-          color: "rgba(255,255,255,0.1)",
+          color: "#ffffff1a",
         },
       },
       y: {
         ticks: {
-          color: "#94a3b8",
-          font: { size: 12 },
+          color: "#6b7280",
+          font: { size: 12, weight: 600 },
         },
         grid: {
-          color: "#ffffff0d",
+          color: "#6b728050",
         },
         border: {
           display: false,
@@ -104,7 +105,7 @@ function Home() {
         data: [45, 35, 20],
         backgroundColor: ["#22c55ecc", "#3b82f6cc", "#a855f7cc"],
         borderWidth: 0,
-        borderRadius: 4,
+        borderRadius: 0,
       },
     ],
   };
@@ -113,7 +114,7 @@ function Home() {
     responsive: true,
     maintainAspectRatio: false,
     devicePixelRatio: 2,
-    cutout: "75%",
+    cutout: "60%",
     plugins: {
       legend: {
         display: false,
@@ -121,8 +122,8 @@ function Home() {
       tooltip: {
         backgroundColor: "#0f172af2",
         padding: 12,
-        titleColor: "#cbd5e1",
-        bodyColor: "#e2e8f0",
+        titleColor: "#eee",
+        bodyColor: "#eee",
         borderColor: "#6366f14d",
         borderWidth: 1,
       },
@@ -150,12 +151,12 @@ function Home() {
         label: "Metas Concluídas",
         data: [5, 8, 12, 15, 18, 22, 28, 32, 38, 42, 48, 55],
         fill: true,
-        backgroundColor: "#6366f133",
-        borderColor: "#6366f1cc",
+        backgroundColor: "#649ffd40",
+        borderColor: "#649ffd",
         borderWidth: 2,
         tension: 0.4,
-        pointBackgroundColor: "#6366f1ff",
-        pointBorderColor: "#fff",
+        pointBackgroundColor: "#234986",
+        pointBorderColor: "#bbb",
         pointBorderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -174,8 +175,8 @@ function Home() {
       tooltip: {
         backgroundColor: "#0f172af2",
         padding: 12,
-        titleColor: "#cbd5e1",
-        bodyColor: "#e2e8f0",
+        titleColor: "#eee",
+        bodyColor: "#eee",
         borderColor: "#6366f14d",
         borderWidth: 1,
       },
@@ -183,8 +184,8 @@ function Home() {
     scales: {
       x: {
         ticks: {
-          color: "#94a3b8",
-          font: { size: 12 },
+          color: "#6b7280",
+          font: { size: 12, weight: 600 },
         },
         grid: {
           display: false,
@@ -195,11 +196,11 @@ function Home() {
       },
       y: {
         ticks: {
-          color: "#94a3b8",
-          font: { size: 12 },
+          color: "#6b7280",
+          font: { size: 12, weight: 600 },
         },
         grid: {
-          color: "#ffffff0d",
+          color: "#6b728050",
         },
         border: {
           display: false,
@@ -222,27 +223,27 @@ function Home() {
           <section className="card quick-actions">
             <h3 className="card-title">O que deseja fazer?</h3>
             <div className="actions-grid">
-              <button className="action-btn">
+              <NavLink to="/calendario" className="action-btn">
                 <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
                 Organizar Calendário
-              </button>
-              <button className="action-btn">
+              </NavLink>
+              <NavLink to="/metas" className="action-btn">
                 <HugeiconsIcon
                   icon={CheckmarkSquare03Icon}
                   className="link-icon"
                 />
                 Organizar Metas
-              </button>
-              <button className="action-btn">
+              </NavLink>
+              <NavLink to="/pomodoro" className="action-btn">
                 <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
                 Iniciar Timer
-              </button>
+              </NavLink>
             </div>
           </section>
 
           {/* Gráfico de barras */}
           <section className="card chart-card chart-bar">
-            <h3 className="card-title">Atividades Recentes</h3>
+            <h3 className="card-title">Horas dedicadas nas Metas</h3>
             <div className="chart-wrapper">
               <Bar data={barData} options={barOptions} />
             </div>
@@ -281,34 +282,42 @@ function Home() {
               </select>
             </div>
             <div className="goals-list">
-              <div className="goal-item">
-                <span className="goal-label">Meta 1</span>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "70%" }}></div>
+              <NavLink to="/metas">
+                <div className="goal-item">
+                  <span className="goal-label">Meta 1</span>
+                  <div className="progress-bar">
+                    <div
+                      className="progress-fill"
+                      style={{ width: "70%" }}
+                    ></div>
+                  </div>
+                  <span className="goal-percentage">70%</span>
                 </div>
-                <span className="goal-percentage">70%</span>
-              </div>
-              <div className="goal-item">
-                <span className="goal-label">Meta 2</span>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "50%" }}></div>
+              </NavLink>
+              <NavLink to="/metas">
+                <div className="goal-item">
+                  <span className="goal-label">Meta 2</span>
+                  <div className="progress-bar">
+                    <div
+                      className="progress-fill"
+                      style={{ width: "50%" }}
+                    ></div>
+                  </div>
+                  <span className="goal-percentage">50%</span>
                 </div>
-                <span className="goal-percentage">50%</span>
-              </div>
-              <div className="goal-item">
-                <span className="goal-label">Meta 3</span>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "30%" }}></div>
+              </NavLink>
+              <NavLink to="/metas">
+                <div className="goal-item">
+                  <span className="goal-label">Meta 3</span>
+                  <div className="progress-bar">
+                    <div
+                      className="progress-fill"
+                      style={{ width: "30%" }}
+                    ></div>
+                  </div>
+                  <span className="goal-percentage">30%</span>
                 </div>
-                <span className="goal-percentage">30%</span>
-              </div>
-              <div className="goal-item">
-                <span className="goal-label">Meta 4</span>
-                <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: "55%" }}></div>
-                </div>
-                <span className="goal-percentage">55%</span>
-              </div>
+              </NavLink>
             </div>
           </section>
 

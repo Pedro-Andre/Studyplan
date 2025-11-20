@@ -7,7 +7,6 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, minmax(30rem, 1fr));
   gap: 0.8rem;
-  background: #f0f3;
   align-items: stretch;
   overflow: hidden;
   padding: 0.7rem 1rem 0.7rem 1rem;
@@ -53,8 +52,12 @@ section.card {
   overflow-y: auto;
 }
 
+/* Container: Botões ações rápidas */
 .actions-grid {
   display: flex;
+  width: 100%;
+  padding-inline: 1rem;
+  margin-top: 3rem;
   flex-direction: column;
   gap: 1.2rem;
 }
@@ -62,17 +65,17 @@ section.card {
 .action-btn {
   background: var(--clr-black);
   border: var(--border-dark-mode);
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   padding: 1.5rem;
   color: var(--clr-white);
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   display: flex;
   align-items: center;
   gap: 1rem;
   text-align: left;
+  text-decoration: none;
 }
 
 .action-btn .icon {
@@ -82,7 +85,6 @@ section.card {
 .action-btn:hover {
   background: var(--clr-primary-low-op);
   border-color: var(--clr-primary);
-  transform: translateY(-2px);
 }
 
 /* ===== GRÁFICO DE BARRAS VERTICAIS ===== */
@@ -157,57 +159,66 @@ section.card {
 }
 
 .legend .dot.green {
-  background: rgba(34, 197, 94, 0.8);
+  background: #22c55ecc;
 }
 
 .legend .dot.blue {
-  background: rgba(59, 130, 246, 0.8);
+  background: #3b82f6cc;
 }
 
 .legend .dot.purple {
-  background: rgba(168, 85, 247, 0.8);
+  background: #a855f7cc;
 }
 
 /* ===== Metas do Dia ===== */
 .goals-card {
   grid-column: 2 / 3;
   grid-row: 2;
+  padding-inline: 1rem;
 }
 
 .goals-header {
   display: flex;
   width: 100%;
-  background: #f0f4;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  padding-inline: 1rem;
+}
+
+h3.card-title {
+  font-size: 1.3rem;
+  color: var(--clr-white);
 }
 
 .month-select {
-  background: var(--clr-black);
+  background: var(--clr-black-light);
   border: var(--border-dark-mode);
   border-radius: 1rem;
-  padding: 0.6rem 1rem;
+  padding: 1rem;
   color: var(--clr-white);
   font-size: 1.3rem;
   cursor: pointer;
   outline: none;
   width: 100%;
-  max-width: 20rem;
+  max-width: 15rem;
 }
 
 .month-select:hover {
-  border-color: var(--clr-primary);
+  background: var(--clr-black);
 }
 
 .goals-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  width: 100%;
+  overflow-y: auto;
+  padding-inline: 1rem;
 }
 
 .goal-item {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 0.8rem;
 }
@@ -216,6 +227,11 @@ section.card {
   font-size: 1.3rem;
   color: var(--clr-white);
   font-weight: 500;
+}
+
+.goal-label:hover {
+  color: var(--clr-primary);
+  text-decoration: none;
 }
 
 .progress-bar {
@@ -229,13 +245,8 @@ section.card {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(99, 102, 241, 0.8),
-    rgba(139, 92, 246, 0.8)
-  );
+  background: var(--clr-gradient-light);
   border-radius: 1rem;
-  transition: width 0.3s ease;
 }
 
 .goal-percentage {
