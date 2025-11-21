@@ -8,7 +8,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Task01Icon,
   AlertCircleIcon,
-  BookmarkCheck01Icon,
+  LocationCheck01Icon,
   HourglassIcon,
   PlayIcon,
   PauseIcon,
@@ -110,7 +110,7 @@ function Goals() {
               <div className="card">
                 <div className="icons">
                   <HugeiconsIcon
-                    icon={BookmarkCheck01Icon}
+                    icon={LocationCheck01Icon}
                     className="icon-style"
                   />
                 </div>
