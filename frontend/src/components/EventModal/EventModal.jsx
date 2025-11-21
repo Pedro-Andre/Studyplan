@@ -46,12 +46,10 @@ function EventModal({ event, onClose, onDelete }) {
   };
 
   return (
-    // <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         <div className="modal">
-          <div className="modal-item">
-            <h2 className="gradient-text sub-title event-name">{event.title}</h2>
-          </div>
+          <h2 className="gradient-text sub-title event-name">{event.title}</h2>
 
           <div className="modal-item">
             {event.desc && (
@@ -61,33 +59,32 @@ function EventModal({ event, onClose, onDelete }) {
               </div>
             )}
           </div>
-              
-            <div className="modal-item">
-              <p className="item">Início:</p>
-              <p className="event-start">
-                {format(event.start, "dd/MM/yyyy 'às' HH:mm", {
-                  locale: ptBR,
-                })}
-              </p>
-            
 
-            <div className="modal-item">
-              <p className="item">Fim:</p>
-              <p className="event-end">
-                {format(event.end, "dd/MM/yyyy 'às' HH:mm", {
-                  locale: ptBR,
-                })}
-              </p>
-            </div>
+          <div className="modal-item">
+            <p className="item">Início:</p>
+            <p className="event-start">
+              {format(event.start, "dd/MM/yyyy 'às' HH:mm", {
+                locale: ptBR,
+              })}
+            </p>
+          </div>
 
-            <div className="event-detail">
+          <div className="modal-item">
+            <p className="item">Fim:</p>
+            <p className="event-end">
+              {format(event.end, "dd/MM/yyyy 'às' HH:mm", {
+                locale: ptBR,
+              })}
+            </p>
+          </div>
+
+          {/* <div className="event-detail">
               <strong>Cor:</strong>
               <div
                 className="color-preview"
                 style={{ backgroundColor: event.color }}
               ></div>
-            </div>
-          </div>
+            </div> */}
 
           <div className="modal-footer">
             <button className="btn delete-btn" onClick={handleDelete}>
@@ -99,7 +96,7 @@ function EventModal({ event, onClose, onDelete }) {
           </div>
         </div>
       </div>
-    // </div>
+    </div>
   );
 }
 

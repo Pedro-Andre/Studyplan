@@ -25,11 +25,14 @@ function Login() {
 
       console.log("Login OK:", response.data);
 
-       // Salva o token
+      // Salva o token
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      console.log("✅ Token salvo no localStorage:", localStorage.getItem("token"));
+      console.log(
+        "✅ Token salvo no localStorage:",
+        localStorage.getItem("token")
+      );
 
       window.location.href = "/";
       // setSuccess(true);
@@ -76,7 +79,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <HugeiconsIcon icon={ViewOffSlashIcon} className="input-icon" />
+            {/* <HugeiconsIcon icon={ViewOffSlashIcon} className="input-icon" /> */}
           </div>
         </label>
 

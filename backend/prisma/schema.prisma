@@ -9,27 +9,44 @@
 // }
 
 // model User {
-//   id       String @id @default(uuid())
-//   name     String 
-//   username String @unique
-//   email    String @unique
-//   password String
+//   id        String   @id @default(uuid())
+//   name      String 
+//   username  String   @unique
+//   email     String   @unique
+//   password  String
 //   createdAt DateTime @default(now())
-//   goals     Goals[] 
   
+//   // Relacionamentos
+//   goals     Goals[] 
+//   events    Event[]  
 // }
 
-
-
 // model Goals {
-//   id       String @id @default(uuid())
-//   name     String
-//   category String?
-//   priority String
+//   id        String   @id @default(uuid())
+//   name      String
+//   category  String?
+//   priority  String
 //   createdAt DateTime @default(now())
-//   finishBy DateTime
-//   userId  String  
-//   user User @relation(fields: [userId], references: [id])
+//   finishBy  DateTime
+//   userId    String  
+  
+//   user      User     @relation(fields: [userId], references: [id])
+// }
+
+// model Event {
+//   id        String   @id @default(uuid())  
+//   title     String
+//   start     DateTime
+//   end       DateTime
+//   desc      String?
+//   color     String   @default("#2196f3")
+//   userId    String  
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+  
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+//   @@map("events")
 // }
 
 generator client {
@@ -56,15 +73,34 @@ model User {
 }
 
 model Goals {
-  id        String   @id @default(uuid())
-  name      String
-  category  String?
-  priority  String
-  createdAt DateTime @default(now())
-  finishBy  DateTime
-  userId    String  
+  id           String        @id @default(uuid())
+  name         String
+  category     String?
+  priority     String
+  status       String        @default("Não Iniciado") // "Não Iniciado", "Em Progresso", "Finalizado"
+  totalTime    Int           @default(0) // Tempo total em segundos
+  createdAt    DateTime      @default(now())
+  finishBy     DateTime
+  completedAt  DateTime?     // Data de conclusão real
+  userId       String  
   
-  user      User     @relation(fields: [userId], references: [id])
+  // Relacionamentos
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timeSessions TimeSession[] // Sessões de tempo trabalhado
+}
+
+model TimeSession {
+  id        String   @id @default(uuid())
+  goalId    String
+  startTime DateTime
+  endTime   DateTime?
+  duration  Int      @default(0) // Duração em segundos
+  createdAt DateTime @default(now())
+  
+  // Relacionamento
+  goal      Goals    @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  
+  @@map("time_sessions")
 }
 
 model Event {
