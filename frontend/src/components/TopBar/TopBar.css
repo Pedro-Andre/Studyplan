@@ -34,12 +34,13 @@
   font-weight: 600;
   height: 3rem;
   cursor: pointer;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   transition: all 0.3s;
 }
 
 .logout-btn:hover {
-  scale: 0.95;
+  background: var(--clr-primary-low-op);
+  border-color: var(--clr-primary);
 }
 
 .gradient-text.home {
@@ -58,4 +59,70 @@
   justify-content: space-between;
   flex-wrap: wrap;
   column-gap: 1.5rem;
+}
+
+/* Container Foto User + Botão pra sair */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.2rem solid var(--clr-primary);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.user-avatar-placeholder {
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 50%;
+  background: var(--clr-black-light);
+  border: 0.1rem solid var(--clr-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.user-avatar-placeholder:hover {
+  border: 0.2rem solid var(--clr-primary);
+}
+
+.avatar-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: -0.05rem;
+  color: var(--clr-white);
+}
+
+.login-icon-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.login-icon-btn:hover {
+  transform: scale(0.95);
+  background: var(--clr-gray-dark, #374151);
+}
+
+.login-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--clr-white);
 }

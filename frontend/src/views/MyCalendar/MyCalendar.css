@@ -72,7 +72,6 @@
 /* Container of the calendar */
 .calendar .rbc-month-view {
   border-radius: 1.2rem;
-  cursor: pointer;
   border: var(--border-dark-mode);
 }
 
@@ -106,8 +105,8 @@
 .calendar .rbc-agenda-table thead tr .rbc-header {
   text-align: center !important;
   max-width: 100%;
-  white-space: normal !important; /* Permite quebra de linha */
-  word-wrap: break-word !important; /* Quebra palavras longas */
+  white-space: normal !important;
+  word-wrap: break-word !important;
   overflow-wrap: break-word !important;
   padding-block: 1rem !important;
   min-width: fit-content;
@@ -141,6 +140,14 @@
 
 .calendar .rbc-agenda-event-cell {
   word-break: break-word; /* Quebra palavras longas */
+}
+
+.calendar .rbc-agenda-view .rbc-agenda-empty {
+  color: var(--clr-white);
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 4rem;
 }
 
 /* Cada dia no calendário */

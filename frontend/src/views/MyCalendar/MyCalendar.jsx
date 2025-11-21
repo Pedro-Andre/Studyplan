@@ -294,7 +294,7 @@ function MyCalendar() {
       const token = localStorage.getItem("token");
 
       console.log("🔍 Token encontrado:", token);
-    console.log("🔍 Token length:", token?.length);
+      console.log("🔍 Token length:", token?.length);
 
       if (!token) {
         console.error("Token não encontrado");
@@ -302,7 +302,7 @@ function MyCalendar() {
         return;
       }
 
- console.log("📤 Enviando requisição para /events com token");
+      console.log("📤 Enviando requisição para /events com token");
 
       const response = await axios.get("http://localhost:3000/events", {
         headers: {
@@ -310,7 +310,7 @@ function MyCalendar() {
         },
       });
 
-console.log("✅ Eventos recebidos:", response.data);
+      console.log("✅ Eventos recebidos:", response.data);
 
       // Converte as strings de data em objetos Date
       const formattedEvents = response.data.map((event) => ({
@@ -445,6 +445,7 @@ console.log("✅ Eventos recebidos:", response.data);
     date: "Data",
     time: "Hora",
     event: "Evento",
+    noEventsInRange: "Não há eventos neste período.",
     showMore: (total) => `+ ${total} eventos`,
   };
 
@@ -500,6 +501,7 @@ console.log("✅ Eventos recebidos:", response.data);
               onEventResize={resizeEvents}
               onSelectEvent={handleOpenEvent}
               eventPropGetter={eventColorStyle}
+              length={30}
               components={{
                 toolbar: CustomToolBar,
               }}
