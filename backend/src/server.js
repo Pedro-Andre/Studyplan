@@ -20,18 +20,18 @@ app.use(
 
 // Parser de JSON
 app.use(express.json());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // ROTA RAIZ
 app.get("/", (req, res) => {
-  res.json({ 
+  res.json({
     message: "API do Studyplan rodando 🚀",
     endpoints: {
       auth: "/cadastro, /login, /calendario",
       events: "/events",
-      goals: "/goals"
-    }
+      goals: "/goals",
+    },
   });
 });
 
