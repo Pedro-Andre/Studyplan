@@ -19,6 +19,43 @@
   scale: 1.05;
 }
 
+.modal-content .btn {
+  width: 100%;
+  max-width: 13rem;
+  height: 4rem;
+  background: var(--clr-black-light);
+  color: var(--clr-white);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 800;
+}
+
+.modal-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 4rem;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+}
+
+.modal-footer .delete-btn,
+.modal .btn.save {
+  background: var(--clr-gradient-light);
+  color: var(--clr-white);
+  border: none;
+}
+
+.modal-footer .btn:hover {
+  scale: 0.95;
+}
+
+.modal .btn.cancel {
+  background: var(--clr-black-dark);
+}
+
 /* Fundo do modal */
 .modal-overlay {
   position: fixed;

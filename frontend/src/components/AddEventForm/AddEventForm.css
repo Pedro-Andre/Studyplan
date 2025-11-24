@@ -19,6 +19,10 @@
   margin-top: 2rem;
 }
 
+.modal-form .form-add-event {
+  width: 80%;
+}
+
 .modal-form .btn-group .save {
   color: var(--clr-btn-text);
 }

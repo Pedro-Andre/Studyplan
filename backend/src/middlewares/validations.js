@@ -4,7 +4,7 @@ const validationCreateUser = [
   body("name")
     .isString()
     .withMessage("Nome dever um texto!")
-    .isLength({ min: 2 })
+    .isLength({ min: 3 })
     .withMessage("Nome muito curto"),
   body("username")
     .isString()

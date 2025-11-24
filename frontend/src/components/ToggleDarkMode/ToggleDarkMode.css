@@ -22,7 +22,7 @@
   height: 2.5rem;
   position: absolute;
   top: 0.4rem;
-  right: 0.2rem;
+  right: 0.3rem;
   background: var(--clr-gradient-light);
   border-radius: 100vw;
   transition: 0.3s;
@@ -39,7 +39,7 @@
 }
 
 .dark_mode_input:checked + .dark_mode_label:after {
-  right: 3rem;
+  left: 0.8rem;
   transform: translateX(-20%);
 }
 

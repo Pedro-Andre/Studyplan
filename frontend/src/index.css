@@ -26,7 +26,8 @@
 
 [data-theme="light"] {
   --clr-white: #223756;
-  --clr-black: #f3f3f8;
+  /* --clr-black: #f3f3f8; */
+  --clr-black: #eee;
   --clr-black-light: #ddd;
   --clr-black-dark: #dbdde0;
   --clr-gray: #6b7280;
@@ -34,7 +35,7 @@
   --clr-primary: #234986;
   --clr-btn-text: #fff;
   --clr-primary-low-op: #23498760;
-  --clr-black-low-op: #eeeeee20;
+  --clr-black-low-op: #eeeeee40;
   --clr-modal-overlay: #000000b3;
   --clr-input-border: 0.1rem solid #234986;
 
@@ -99,9 +100,17 @@ input[type="color"] {
   padding: 1rem;
 }
 
+/* Containers padrão que agrupam os elementos das views  */
 .view-container {
   display: flex;
   min-height: 100vh;
+}
+
+.view-container .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
 }
 
 .gradient-text {
@@ -132,13 +141,13 @@ input[type="color"] {
   position: absolute;
   z-index: -999;
   filter: blur(10rem);
-  opacity: 0.2;
 }
 
 .orb-1 {
   left: 0;
   top: 5%;
-  background: var(--clr-gradient-light);
+  background: var(--clr-primary);
+  opacity: 0.2;
 }
 
 .orb-2 {
@@ -146,4 +155,5 @@ input[type="color"] {
   bottom: 1%;
   width: 55rem;
   height: 55rem;
+  opacity: 0.15;
 }

@@ -23,11 +23,16 @@ function Login() {
 
       console.log("📥 Token recebido:", response.data.token);
 
-      // console.log("Login OK:", response.data);
+      console.log("Login OK:", response.data);
 
-      // Save the token in localStorage
+      // Salva o token
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      console.log(
+        "✅ Token salvo no localStorage:",
+        localStorage.getItem("token")
+      );
 
       window.location.href = "/";
       // setSuccess(true);
@@ -74,7 +79,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <HugeiconsIcon icon={ViewOffSlashIcon} className="input-icon" />
+            {/* <HugeiconsIcon icon={ViewOffSlashIcon} className="input-icon" /> */}
           </div>
         </label>
 

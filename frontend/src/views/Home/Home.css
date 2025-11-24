@@ -1,0 +1,324 @@
+/* ===== GRID PRINCIPAL ===== */
+.home-container {
+  color: var(--clr-white);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(30rem, 1fr));
+  gap: 0.8rem;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0.7rem 1rem 0.7rem 1rem;
+}
+
+/* ===== BASE CARD ===== */
+section.card {
+  background: var(--clr-black-dark);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* min-height: 20rem; */
+  max-height: 31.5rem;
+}
+
+/* ===== ALTURA PADRÃO DOS CONTAINERS DE GRÁFICO ===== */
+.card.chart-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart-wrapper,
+.chart-wrapper-doughnut {
+  width: 100%;
+  flex: 1;
+  min-height: 27rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-wrapper-doughnut {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== AÇÕES RÁPIDAS ===== */
+.quick-actions {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  max-height: 30rem;
+  overflow-y: auto;
+}
+
+/* Container: Botões ações rápidas */
+.actions-grid {
+  display: flex;
+  width: 100%;
+  padding-inline: 1rem;
+  margin-top: 3rem;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.action-btn {
+  background: var(--clr-black);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: var(--clr-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  text-decoration: none;
+}
+
+.action-btn .icon {
+  font-size: 2rem;
+}
+
+.action-btn:hover {
+  background: var(--clr-primary-low-op);
+  border-color: var(--clr-primary);
+}
+
+/* ===== GRÁFICO DE BARRAS VERTICAIS ===== */
+.chart-bar {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+.chart-doughnut {
+  grid-column: 1 / 2;
+  grid-row: 2;
+}
+
+.goals-card {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.chart-area {
+  grid-column: 3 / 4;
+  grid-row: 2;
+}
+
+/* ===== GRÁFICO DE ROSCA ===== */
+.chart-doughnut {
+  grid-column: 1 / 2;
+  grid-row: 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.doughnut-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+  /* background: #0f04; */
+}
+
+.chart-wrapper-doughnut {
+  width: 100%;
+  max-width: 15rem;
+  min-height: 10rem;
+  /* background: #f244; */
+}
+
+.legend {
+  list-style: none;
+  /* background: #00f5; */
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-block: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--clr-white);
+}
+
+.legend .dot {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend .dot.green {
+  background: #22c55ecc;
+}
+
+.legend .dot.blue {
+  background: #3b82f6cc;
+}
+
+.legend .dot.purple {
+  background: #a855f7cc;
+}
+
+/* ===== Metas do Dia ===== */
+.goals-card {
+  grid-column: 2 / 3;
+  grid-row: 2;
+  padding-inline: 1rem;
+}
+
+.goals-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-inline: 1rem;
+}
+
+h3.card-title {
+  font-size: 1.3rem;
+  color: var(--clr-white);
+}
+
+.month-select {
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: var(--clr-white);
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  max-width: 15rem;
+}
+
+.month-select:hover {
+  background: var(--clr-black);
+}
+
+.goals-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  padding-inline: 1rem;
+}
+
+.goal-item {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.goal-label {
+  font-size: 1.3rem;
+  color: var(--clr-white);
+  font-weight: 500;
+}
+
+.goal-label:hover {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.8rem;
+  background: var(--clr-black);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--clr-gradient-light);
+  border-radius: 1rem;
+}
+
+.goal-percentage {
+  font-size: 1.2rem;
+  color: var(--clr-gray-light);
+  text-align: right;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1200px) {
+  .home-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .chart-bar {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  .chart-doughnut {
+    grid-column: 1 / 2;
+    grid-row: 3;
+  }
+
+  .goals-card {
+    grid-column: 2 / 3;
+    grid-row: 3;
+  }
+
+  .chart-area {
+    grid-column: 1 / 3;
+    grid-row: 4;
+  }
+
+  .chart-card {
+    max-height: 300px;
+  }
+
+  .chart-wrapper,
+  .chart-wrapper-doughnut {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .chart-card {
+    max-height: 280px;
+  }
+
+  .chart-wrapper,
+  .chart-wrapper-doughnut {
+    max-height: 200px;
+  }
+}
+
+/* ===== FIX PARA CANVAS ===== */
+/* canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+} */
