@@ -1,160 +1,3 @@
-// import { useState } from "react";
-// import SideMenu from "../../components/SideMenu/SideMenu";
-// import "../Profile/Profile.css";
-// import { HugeiconsIcon } from "@hugeicons/react";
-// import {
-//   Pen01Icon,
-//   HourglassIcon,
-//   LocationCheck01Icon,
-// } from "@hugeicons/core-free-icons";
-// import TopBar from "../../components/TopBar/TopBar";
-
-// function Profile() {
-//   const [editMode, setEditMode] = useState(false);
-//   const [user, setUser] = useState({
-//     nome: "Nome usuário",
-//     email: "usuario@email.com",
-//     senha: "123456",
-//     confirmSenha: "123456",
-//     metasConcluidas: 40,
-//     tempoTotal: "5h e 30min",
-//     foto: "https://i.pravatar.cc/150?img=12",
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setUser((prev) => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleSave = () => {
-//     // Aqui você pode adicionar a lógica de atualização da API
-//     alert("Perfil atualizado com sucesso!");
-//     setEditMode(false);
-//   };
-
-//   return (
-//     <main className="view-container">
-//       <div className="orb orb-1"></div>
-//       <div className="orb orb-2"></div>
-//       <SideMenu />
-
-//       <div className="content">
-//         <TopBar />
-//         <div className="profile-page">
-//           <div className="profile-header">
-//             <div className="titles">
-//               <h1 className="gradient-text">Perfil</h1>
-//             </div>
-//           </div>
-
-//           <div className="profile-card">
-//             <div className="card-header">
-//               <div className="profile-left">
-//                 <div className="photo-wrapper">
-//                   <img
-//                     src={user.foto}
-//                     alt="Foto do usuário"
-//                     className="profile-photo"
-//                   />
-//                   {editMode && (
-//                     <button className="edit-photo-btn">
-//                       <HugeiconsIcon icon={Pen01Icon} />
-//                     </button>
-//                   )}
-//                 </div>
-//                 <div className="profile-info">
-//                   <h2>{user.nome}</h2>
-//                   <p className="info-item">
-//                     <HugeiconsIcon icon={LocationCheck01Icon} /> Metas
-//                     concluídas: {user.metasConcluidas}
-//                   </p>
-//                   <p className="info-item">
-//                     <HugeiconsIcon icon={HourglassIcon} /> Tempo realizando as
-//                     metas: {user.tempoTotal}
-//                   </p>
-//                 </div>
-//               </div>
-//               <div className="teste-btn">
-//                 {!editMode ? (
-//                   <button
-//                     className="edit-button"
-//                     onClick={() => setEditMode(true)}
-//                   >
-//                     <HugeiconsIcon icon={Pen01Icon} />
-//                   </button>
-//                 ) : (
-//                   <div className="div-none"></div>
-//                 )}
-//               </div>
-//             </div>
-//             <div className="profile-form">
-//               {editMode && (
-//                 <>
-//                   <label>Nome de usuário</label>
-//                   <input
-//                     type="text"
-//                     name="nome"
-//                     value={user.nome}
-//                     onChange={handleChange}
-//                     placeholder="Nome de usuário"
-//                   />
-//                   <label>email</label>
-//                   <input
-//                     type="email"
-//                     name="email"
-//                     value={user.email}
-//                     onChange={handleChange}
-//                     placeholder="Email"
-//                   />
-//                   <label>Senha</label>
-//                   <input
-//                     type="password"
-//                     name="senha"
-//                     value={user.senha}
-//                     onChange={handleChange}
-//                     placeholder="Senha"
-//                   />
-//                   <label>Confirmar senha</label>
-//                   <input
-//                     type="password"
-//                     name="confirmSenha"
-//                     value={user.confirmSenha}
-//                     onChange={handleChange}
-//                     placeholder="Confirme sua senha"
-//                   />
-//                 </>
-//               )}
-//             </div>
-//             {editMode && (
-//               <>
-//                 <div className="centralize-delete">
-//                   <a href="" className="delete-profile">
-//                     Excluir conta
-//                   </a>
-//                 </div>
-//                 <div className="action-buttons">
-//                   <button
-//                     className="cancel-btn"
-//                     onClick={() => setEditMode(false)}
-//                   >
-//                     Cancelar
-//                   </button>
-//                   <button className="save-btn" onClick={handleSave}>
-//                     Salvar
-//                   </button>
-//                 </div>
-//               </>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
-
-// export default Profile;
-
-// ========
 // import { useState, useEffect } from "react";
 // import SideMenu from "../../components/SideMenu/SideMenu";
 // import "../Profile/Profile.css";
@@ -174,7 +17,6 @@
 //   const [user, setUser] = useState({
 //     nome: "",
 //     email: "",
-//     senha: "",
 //     novaSenha: "",
 //     confirmarSenha: "",
 //     metasConcluidas: 0,
@@ -183,7 +25,6 @@
 //   });
 
 //   const [senhaAtual, setSenhaAtual] = useState("");
-//   const [changePassword, setChangePassword] = useState(false);
 
 //   // Buscar dados do perfil
 //   useEffect(() => {
@@ -203,7 +44,6 @@
 //       setUser({
 //         nome: response.data.nome,
 //         email: response.data.email,
-//         senha: "",
 //         novaSenha: "",
 //         confirmarSenha: "",
 //         metasConcluidas: response.data.metasConcluidas,
@@ -228,7 +68,7 @@
 
 //     try {
 //       // Atualizar nome e email
-//       await axios.put(
+//       const response = await axios.put(
 //         "http://localhost:3000/profile",
 //         {
 //           name: user.nome,
@@ -240,7 +80,7 @@
 //       );
 
 //       // Atualizar senha se preenchida
-//       if (changePassword && user.novaSenha) {
+//       if (senhaAtual && user.novaSenha) {
 //         if (user.novaSenha !== user.confirmarSenha) {
 //           alert("As senhas não coincidem!");
 //           return;
@@ -259,9 +99,21 @@
 //         );
 //       }
 
+//       // Atualizar localStorage com novos dados
+//       const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+//       const updatedUser = {
+//         ...storedUser,
+//         name: response.data.user.name,
+//         email: response.data.user.email,
+//         photo: user.foto,
+//       };
+//       localStorage.setItem("user", JSON.stringify(updatedUser));
+
+//       // Disparar evento para atualizar TopBar
+//       window.dispatchEvent(new Event("profileUpdated"));
+
 //       alert("Perfil atualizado com sucesso!");
 //       setEditMode(false);
-//       setChangePassword(false);
 //       setSenhaAtual("");
 //       fetchProfile();
 //     } catch (error) {
@@ -298,9 +150,7 @@
 //   };
 
 //   const handleDeleteAccount = async () => {
-//     const senha = prompt(
-//       "Digite sua senha para confirmar a exclusão da conta:"
-//     );
+//     const senha = prompt("Digite sua senha para confirmar a exclusão da conta:");
 //     if (!senha) return;
 
 //     if (!confirm("Tem certeza? Esta ação é irreversível!")) {
@@ -329,7 +179,7 @@
 //         <SideMenu />
 //         <div className="content">
 //           <TopBar />
-//           <p className="loading-text">Carregando perfil...</p>
+//           <p>Carregando perfil...</p>
 //         </div>
 //       </main>
 //     );
@@ -346,7 +196,7 @@
 //         <div className="profile-page">
 //           <div className="profile-header">
 //             <div className="titles">
-//               <h1 className="gradient-text small-text">Perfil</h1>
+//               <h1 className="gradient-text">Perfil</h1>
 //             </div>
 //           </div>
 
@@ -425,51 +275,29 @@
 //                     placeholder="Email"
 //                   />
 
-//                   <div style={{ marginTop: "2rem" }}>
-//                     <label
-//                       style={{
-//                         display: "flex",
-//                         alignItems: "center",
-//                         gap: "1rem",
-//                         cursor: "pointer",
-//                       }}
-//                     >
-//                       <input
-//                         type="checkbox"
-//                         checked={changePassword}
-//                         onChange={(e) => setChangePassword(e.target.checked)}
-//                       />
-//                       Alterar senha
-//                     </label>
-//                   </div>
-
-//                   {changePassword && (
-//                     <>
-//                       <label>Senha Atual</label>
-//                       <input
-//                         type="password"
-//                         value={senhaAtual}
-//                         onChange={(e) => setSenhaAtual(e.target.value)}
-//                         placeholder="Digite sua senha atual"
-//                       />
-//                       <label>Nova Senha</label>
-//                       <input
-//                         type="password"
-//                         name="novaSenha"
-//                         value={user.novaSenha}
-//                         onChange={handleChange}
-//                         placeholder="Nova senha (mínimo 6 caracteres)"
-//                       />
-//                       <label>Confirmar Nova Senha</label>
-//                       <input
-//                         type="password"
-//                         name="confirmarSenha"
-//                         value={user.confirmarSenha}
-//                         onChange={handleChange}
-//                         placeholder="Confirme a nova senha"
-//                       />
-//                     </>
-//                   )}
+//                   <label>Senha Atual</label>
+//                   <input
+//                     type="password"
+//                     value={senhaAtual}
+//                     onChange={(e) => setSenhaAtual(e.target.value)}
+//                     placeholder="Digite sua senha atual para alterar"
+//                   />
+//                   <label>Nova Senha</label>
+//                   <input
+//                     type="password"
+//                     name="novaSenha"
+//                     value={user.novaSenha}
+//                     onChange={handleChange}
+//                     placeholder="Deixe em branco para não alterar"
+//                   />
+//                   <label>Confirmar Nova Senha</label>
+//                   <input
+//                     type="password"
+//                     name="confirmarSenha"
+//                     value={user.confirmarSenha}
+//                     onChange={handleChange}
+//                     placeholder="Confirme a nova senha"
+//                   />
 //                 </>
 //               )}
 //             </div>
@@ -488,18 +316,18 @@
 //                     Excluir conta
 //                   </button>
 //                 </div>
-//                 <div className="action-buttons">
+//                 <div className="modal-footer">
 //                   <button
-//                     className="cancel-btn"
+//                     className="btn close-modal-btn"
 //                     onClick={() => {
 //                       setEditMode(false);
-//                       setChangePassword(false);
+//                       setSenhaAtual("");
 //                       fetchProfile();
 //                     }}
 //                   >
 //                     Cancelar
 //                   </button>
-//                   <button className="save-btn" onClick={handleSave}>
+//                   <button className="btn delete-btn" onClick={handleSave}>
 //                     Salvar
 //                   </button>
 //                 </div>
@@ -514,8 +342,7 @@
 
 // export default Profile;
 
-
-// ============
+// ========
 import { useState, useEffect } from "react";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import "../Profile/Profile.css";
@@ -586,7 +413,7 @@ function Profile() {
 
     try {
       // Atualizar nome e email
-      await axios.put(
+      const response = await axios.put(
         "http://localhost:3000/profile",
         {
           name: user.nome,
@@ -617,10 +444,23 @@ function Profile() {
         );
       }
 
+      // Atualizar localStorage com novos dados
+      const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+      const updatedUser = {
+        ...storedUser,
+        name: response.data.user.name,
+        email: response.data.user.email,
+        photo: user.foto,
+      };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      // Disparar evento para atualizar TopBar
+      window.dispatchEvent(new Event("profileUpdated"));
+
       alert("Perfil atualizado com sucesso!");
       setEditMode(false);
       setSenhaAtual("");
-      fetchGoals();
+      fetchProfile();
     } catch (error) {
       console.error("Erro ao atualizar perfil:", error);
       alert(error.response?.data?.error || "Erro ao atualizar perfil");
@@ -630,6 +470,12 @@ function Profile() {
   const handlePhotoChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    // Validar tamanho (máximo 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert("A imagem deve ter no máximo 5MB");
+      return;
+    }
 
     // Converter para base64
     const reader = new FileReader();
@@ -645,10 +491,19 @@ function Profile() {
         );
 
         setUser((prev) => ({ ...prev, foto: base64Image }));
+
+        // Atualizar localStorage
+        const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+        storedUser.photo = base64Image;
+        localStorage.setItem("user", JSON.stringify(storedUser));
+
+        // Disparar evento para atualizar TopBar
+        window.dispatchEvent(new Event("profileUpdated"));
+
         alert("Foto atualizada com sucesso!");
       } catch (error) {
         console.error("Erro ao atualizar foto:", error);
-        alert("Erro ao atualizar foto");
+        alert(error.response?.data?.error || "Erro ao atualizar foto. Tente uma imagem menor.");
       }
     };
     reader.readAsDataURL(file);
@@ -684,7 +539,7 @@ function Profile() {
         <SideMenu />
         <div className="content">
           <TopBar />
-          <p>Carregando perfil...</p>
+          <p className="loading-text">Carregando perfil...</p>
         </div>
       </main>
     );
