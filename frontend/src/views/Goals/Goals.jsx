@@ -1,6 +1,7 @@
 import SideMenu from "../../components/SideMenu/SideMenu";
 import TopBar from "../../components/TopBar/TopBar";
 import AddTaskModal from "./AddTaskModal";
+import EditTaskModal from "../../components/EditTaskModal/EditTaskModal";
 import "./Goals.css";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
@@ -13,6 +14,8 @@ import {
   PlayIcon,
   PauseIcon,
   ArrowDown01Icon,
+  MoreVerticalIcon,
+  Notification03Icon,
 } from "@hugeicons/core-free-icons";
 
 function Goals() {
@@ -28,14 +31,25 @@ function Goals() {
   const [loading, setLoading] = useState(true);
   const [activeSessions, setActiveSessions] = useState({});
   const [elapsedTimes, setElapsedTimes] = useState({});
-  
-  // Estados para dropdowns
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+
+  // Estados para dropdowns e modais
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [editingGoal, setEditingGoal] = useState(null);
   const dropdownRef = useRef(null);
+  const menuRef = useRef(null);
 
   // Estados para paginação
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  // Verificar se notificações já estão habilitadas
+  useEffect(() => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      setNotificationsEnabled(true);
+    }
+  }, []);
 
   // Buscar usuário
   useEffect(() => {
@@ -66,7 +80,7 @@ function Goals() {
 
       const sessions = {};
       const elapsed = {};
-      
+
       for (const goal of response.data.goals) {
         const activeSession = goal.timeSessions.find((s) => !s.endTime);
         if (activeSession) {
@@ -77,9 +91,14 @@ function Goals() {
           elapsed[goal.id] = elapsedSeconds;
         }
       }
-      
+
       setActiveSessions(sessions);
       setElapsedTimes(elapsed);
+
+      // Verificar notificações se estiver habilitado
+      if (notificationsEnabled) {
+        checkNotifications(response.data.goals);
+      }
     } catch (error) {
       console.error("Erro ao buscar metas:", error);
     } finally {
@@ -89,7 +108,85 @@ function Goals() {
 
   useEffect(() => {
     fetchGoals();
-  }, []);
+  }, [notificationsEnabled]);
+
+  // Solicitar permissão para notificações (via clique do usuário)
+  const handleEnableNotifications = async () => {
+    if (!("Notification" in window)) {
+      alert("Seu navegador não suporta notificações");
+      return;
+    }
+
+    try {
+      const permission = await Notification.requestPermission();
+
+      if (permission === "granted") {
+        setNotificationsEnabled(true);
+
+        new Notification("🎉 Notificações Ativadas!", {
+          body: "Você receberá alertas sobre suas metas!",
+          icon: "/logo.png",
+        });
+
+        checkNotifications(metas);
+      } else {
+        alert(
+          "Permissão de notificações negada. Você pode habilitar nas configurações do navegador."
+        );
+      }
+    } catch (error) {
+      console.error("Erro ao solicitar permissão:", error);
+      alert("Erro ao ativar notificações");
+    }
+  };
+
+  // Verificar e enviar notificações
+  const checkNotifications = (goals) => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      const now = new Date();
+
+      goals.forEach((goal) => {
+        if (goal.status === "Finalizado") return;
+
+        const deadline = new Date(goal.finishBy);
+        const hoursUntilDeadline = (deadline - now) / (1000 * 60 * 60);
+
+        // Notificar se faltar menos de 24 horas
+        if (hoursUntilDeadline > 0 && hoursUntilDeadline <= 24) {
+          const notificationKey = `notified-${goal.id}-24h`;
+
+          if (!localStorage.getItem(notificationKey)) {
+            new Notification("⏰ Prazo Próximo!", {
+              body: `A meta "${goal.name}" vence em ${Math.floor(
+                hoursUntilDeadline
+              )} horas!`,
+              icon: "/logo.png",
+              badge: "/logo.png",
+              tag: goal.id,
+            });
+
+            localStorage.setItem(notificationKey, "true");
+          }
+        }
+
+        // Notificar se passou do prazo
+        if (hoursUntilDeadline < 0) {
+          const notificationKey = `notified-${goal.id}-overdue`;
+
+          if (!localStorage.getItem(notificationKey)) {
+            new Notification("🚨 Prazo Vencido!", {
+              body: `A meta "${goal.name}" está atrasada!`,
+              icon: "/logo.png",
+              badge: "/logo.png",
+              tag: goal.id,
+            });
+
+            localStorage.setItem(notificationKey, "true");
+          }
+        }
+      });
+    }
+  };
 
   // Atualização em tempo real
   useEffect(() => {
@@ -105,10 +202,13 @@ function Goals() {
       });
 
       setStats((prevStats) => {
-        const totalElapsed = Object.values(elapsedTimes).reduce((sum, time) => sum + time, 0);
+        const totalElapsed = Object.values(elapsedTimes).reduce(
+          (sum, time) => sum + time,
+          0
+        );
         const metasBase = metas.reduce((sum, meta) => sum + meta.totalTime, 0);
         const totalSeconds = metasBase + totalElapsed;
-        
+
         return {
           ...prevStats,
           totalHours: Math.floor(totalSeconds / 3600),
@@ -120,11 +220,14 @@ function Goals() {
     return () => clearInterval(interval);
   }, [activeSessions, elapsedTimes, metas]);
 
-  // Fechar dropdown ao clicar fora
+  // Fechar dropdowns ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpenDropdown(null);
+      }
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenu(null);
       }
     };
 
@@ -224,11 +327,43 @@ function Goals() {
     }
   };
 
+  // Deletar meta
+  const handleDelete = async (goalId, goalName) => {
+    if (!confirm(`Tem certeza que deseja deletar a meta "${goalName}"?`)) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`http://localhost:3000/goals/${goalId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setOpenMenu(null);
+      fetchGoals();
+
+      const newTotal = metas.length - 1;
+      const newTotalPages = Math.ceil(newTotal / itemsPerPage);
+      if (currentPage > newTotalPages && newTotalPages > 0) {
+        setCurrentPage(newTotalPages);
+      }
+    } catch (error) {
+      console.error("Erro ao deletar meta:", error);
+      alert(error.response?.data?.error || "Erro ao deletar meta");
+    }
+  };
+
+  // Abrir modal de edição
+  const handleEdit = (goal) => {
+    setEditingGoal(goal);
+    setOpenMenu(null);
+  };
+
   // Formatar tempo
   const formatTime = (totalSeconds, goalId) => {
-    const sessionTime = activeSessions[goalId] ? (elapsedTimes[goalId] || 0) : 0;
+    const sessionTime = activeSessions[goalId] ? elapsedTimes[goalId] || 0 : 0;
     const seconds = totalSeconds + sessionTime;
-    
+
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
 
@@ -258,18 +393,18 @@ function Goals() {
   const getPaginationButtons = () => {
     const buttons = [];
     const maxButtons = 5;
-    
+
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
     let endPage = Math.min(totalPages, startPage + maxButtons - 1);
-    
+
     if (endPage - startPage < maxButtons - 1) {
       startPage = Math.max(1, endPage - maxButtons + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       buttons.push(i);
     }
-    
+
     return buttons;
   };
 
@@ -299,6 +434,44 @@ function Goals() {
 
           <div className="metas-container">
             <div className="centralizar-btn">
+              {!notificationsEnabled && (
+                <button
+                  onClick={handleEnableNotifications}
+                  className="notification-btn"
+                  style={{
+                    background: "var(--clr-primary-low-op)",
+                    border: "2px solid var(--clr-primary)",
+                    color: "var(--clr-primary)",
+                    padding: "1rem 2rem",
+                    borderRadius: "0.8rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.8rem",
+                    fontSize: "1.5rem",
+                    fontWeight: "700",
+                    transition: "all 0.3s ease",
+                    minWidth: "20rem",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "var(--clr-primary)";
+                    e.currentTarget.style.color = "var(--clr-white)";
+                    e.currentTarget.style.transform = "scale(1.02)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      "var(--clr-primary-low-op)";
+                    e.currentTarget.style.color = "var(--clr-primary)";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  <HugeiconsIcon
+                    icon={Notification03Icon}
+                    style={{ width: "2.2rem", height: "2.2rem" }}
+                  />
+                  Ativar Notificações
+                </button>
+              )}
               <AddTaskModal onGoalAdded={fetchGoals} />
             </div>
 
@@ -364,13 +537,14 @@ function Goals() {
                     <th>Conclusão Estimada</th>
                     <th>Prioridade</th>
                     <th>Tempo</th>
+                    <th>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   {currentMetas.length === 0 ? (
                     <tr>
                       <td
-                        colSpan="6"
+                        colSpan="7"
                         style={{ textAlign: "center", padding: "20px" }}
                       >
                         Nenhuma meta cadastrada. Clique em "Adicionar Tarefa"
@@ -404,7 +578,12 @@ function Goals() {
                         </td>
 
                         <td>
-                          <div style={{ position: "relative", display: "inline-block" }}>
+                          <div
+                            style={{
+                              position: "relative",
+                              display: "inline-block",
+                            }}
+                          >
                             <span
                               className={`status ${
                                 meta.status === "Em Progresso"
@@ -413,30 +592,50 @@ function Goals() {
                                   ? "finalizado"
                                   : "nao-iniciado"
                               }`}
-                              onClick={() => setOpenDropdown(openDropdown === `status-${meta.id}` ? null : `status-${meta.id}`)}
-                              style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem" }}
+                              onClick={() =>
+                                setOpenDropdown(
+                                  openDropdown === `status-${meta.id}`
+                                    ? null
+                                    : `status-${meta.id}`
+                                )
+                              }
+                              style={{
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                              }}
                             >
                               {meta.status}
-                              <HugeiconsIcon icon={ArrowDown01Icon} style={{ width: "1.2rem", height: "1.2rem" }} />
+                              <HugeiconsIcon
+                                icon={ArrowDown01Icon}
+                                style={{ width: "1.2rem", height: "1.2rem" }}
+                              />
                             </span>
 
                             {openDropdown === `status-${meta.id}` && (
                               <div ref={dropdownRef} className="dropdown-menu">
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handleStatusChange(meta.id, "Não Iniciado")}
+                                  onClick={() =>
+                                    handleStatusChange(meta.id, "Não Iniciado")
+                                  }
                                 >
                                   Não Iniciado
                                 </div>
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handleStatusChange(meta.id, "Em Progresso")}
+                                  onClick={() =>
+                                    handleStatusChange(meta.id, "Em Progresso")
+                                  }
                                 >
                                   Em Progresso
                                 </div>
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handleStatusChange(meta.id, "Finalizado")}
+                                  onClick={() =>
+                                    handleStatusChange(meta.id, "Finalizado")
+                                  }
                                 >
                                   Finalizado
                                 </div>
@@ -449,7 +648,12 @@ function Goals() {
                         <td>{formatDate(meta.finishBy)}</td>
 
                         <td>
-                          <div style={{ position: "relative", display: "inline-block" }}>
+                          <div
+                            style={{
+                              position: "relative",
+                              display: "inline-block",
+                            }}
+                          >
                             <span
                               className={`prioridade ${
                                 meta.priority === "Alta"
@@ -458,30 +662,51 @@ function Goals() {
                                   ? "media"
                                   : "baixa"
                               }`}
-                              onClick={() => setOpenDropdown(openDropdown === `priority-${meta.id}` ? null : `priority-${meta.id}`)}
-                              style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "center" }}
+                              onClick={() =>
+                                setOpenDropdown(
+                                  openDropdown === `priority-${meta.id}`
+                                    ? null
+                                    : `priority-${meta.id}`
+                                )
+                              }
+                              style={{
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.5rem",
+                                justifyContent: "center",
+                              }}
                             >
                               {meta.priority}
-                              <HugeiconsIcon icon={ArrowDown01Icon} style={{ width: "1.2rem", height: "1.2rem" }} />
+                              <HugeiconsIcon
+                                icon={ArrowDown01Icon}
+                                style={{ width: "1.2rem", height: "1.2rem" }}
+                              />
                             </span>
 
                             {openDropdown === `priority-${meta.id}` && (
                               <div ref={dropdownRef} className="dropdown-menu">
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handlePriorityChange(meta.id, "Baixo")}
+                                  onClick={() =>
+                                    handlePriorityChange(meta.id, "Baixo")
+                                  }
                                 >
                                   Baixo
                                 </div>
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handlePriorityChange(meta.id, "Médio")}
+                                  onClick={() =>
+                                    handlePriorityChange(meta.id, "Médio")
+                                  }
                                 >
                                   Médio
                                 </div>
-                                <div 
+                                <div
                                   className="dropdown-item"
-                                  onClick={() => handlePriorityChange(meta.id, "Alta")}
+                                  onClick={() =>
+                                    handlePriorityChange(meta.id, "Alta")
+                                  }
                                 >
                                   Alta
                                 </div>
@@ -492,6 +717,59 @@ function Goals() {
 
                         <td>
                           {formatTime(meta.totalTime, meta.id)}
+                          {activeSessions[meta.id] && (
+                            <span
+                              style={{ marginLeft: "5px", color: "#4CAF50" }}
+                            >
+                              +
+                            </span>
+                          )}
+                        </td>
+
+                        <td>
+                          <div
+                            style={{
+                              position: "relative",
+                              display: "inline-block",
+                            }}
+                          >
+                            <div
+                              className="action-menu-btn"
+                              onClick={() =>
+                                setOpenMenu(
+                                  openMenu === meta.id ? null : meta.id
+                                )
+                              }
+                            >
+                              <HugeiconsIcon
+                                icon={MoreVerticalIcon}
+                                style={{
+                                  width: "2rem",
+                                  height: "2rem",
+                                  cursor: "pointer",
+                                }}
+                              />
+                            </div>
+
+                            {openMenu === meta.id && (
+                              <div ref={menuRef} className="dropdown-menu">
+                                <div
+                                  className="dropdown-item"
+                                  onClick={() => handleEdit(meta)}
+                                >
+                                  Editar
+                                </div>
+                                <div
+                                  className="dropdown-item dropdown-item-delete"
+                                  onClick={() =>
+                                    handleDelete(meta.id, meta.name)
+                                  }
+                                >
+                                  Deletar
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))
@@ -507,11 +785,14 @@ function Goals() {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    style={{ opacity: currentPage === 1 ? 0.5 : 1, cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
+                    style={{
+                      opacity: currentPage === 1 ? 0.5 : 1,
+                      cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                    }}
                   >
                     Anterior
                   </button>
-                  
+
                   {getPaginationButtons().map((page) => (
                     <button
                       key={page}
@@ -521,11 +802,15 @@ function Goals() {
                       {page}
                     </button>
                   ))}
-                  
+
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    style={{ opacity: currentPage === totalPages ? 0.5 : 1, cursor: currentPage === totalPages ? "not-allowed" : "pointer" }}
+                    style={{
+                      opacity: currentPage === totalPages ? 0.5 : 1,
+                      cursor:
+                        currentPage === totalPages ? "not-allowed" : "pointer",
+                    }}
                   >
                     Próx
                   </button>
@@ -535,6 +820,15 @@ function Goals() {
           </div>
         </div>
       </main>
+
+      {/* Modal de Edição */}
+      {editingGoal && (
+        <EditTaskModal
+          goal={editingGoal}
+          onClose={() => setEditingGoal(null)}
+          onGoalUpdated={fetchGoals}
+        />
+      )}
     </>
   );
 }

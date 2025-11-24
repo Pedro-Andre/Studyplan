@@ -1,7 +1,8 @@
+import express from "express";
 import authRoutes from "./auth.js";
 import eventsRoutes from "./events.js";
 import goalsRoutes from "./goals.js";
-import express from "express";
+import profileRoutes from "./profile.js";
 
 const router = express.Router();
 
@@ -9,5 +10,6 @@ const router = express.Router();
 router.use(authRoutes);
 router.use(eventsRoutes);
 router.use(goalsRoutes);
+router.use(profileRoutes);
 
 export default router;

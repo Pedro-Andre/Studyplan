@@ -78,20 +78,12 @@ function EventModal({ event, onClose, onDelete }) {
             </p>
           </div>
 
-          {/* <div className="event-detail">
-              <strong>Cor:</strong>
-              <div
-                className="color-preview"
-                style={{ backgroundColor: event.color }}
-              ></div>
-            </div> */}
-
           <div className="modal-footer">
-            <button className="btn delete-btn" onClick={handleDelete}>
-              Deletar Evento
-            </button>
             <button className="btn close-modal-btn" onClick={onClose}>
               Fechar
+            </button>
+            <button className="btn delete-btn" onClick={handleDelete}>
+              Deletar Evento
             </button>
           </div>
         </div>

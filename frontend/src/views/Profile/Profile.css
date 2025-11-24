@@ -1,15 +1,16 @@
 .profile-page {
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
   min-height: 100vh;
 }
 
 .profile-card {
-  background: var(--clr-black-dark); 
-  padding: 25px 35px; /*fixo/alteração*/
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-  transition: all 0.3s ease;
+  background: var(--clr-black-dark);
+  border: var(--border-dark-mode);
+  padding: 2.5rem 3.5rem; 
+  border-radius: 1.5rem;
+  margin-top: 2rem;
+  transition: all 0.3s;
 }
 
 .card-header {
@@ -24,33 +25,38 @@
 }
 
 .profile-info {
-  margin-left: 10px;
+  margin-left: 1rem;
 }
 
 .photo-wrapper {
   position: relative;
-  display: inline-block; /*alteração*/
+  display: inline-block; 
 }
 
 .profile-photo {
-  width: 110px;
-  height: 110px;
+  width: 11rem;
+  height: 11rem;
   border-radius: 50%;
-  object-fit: cover; /*alteração*/
-  border: 2px solid #69c0f6;
+  object-fit: cover; 
+  border: var(--border-dark-mode);
 }
 
 .edit-photo-btn {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: linear-gradient(to right, #5b79ff, #69c0f6);
+  bottom: .5rem;
+  right: .5rem;
+  background: var(--clr-gradient-light);
   border: none;
-  color: #fff;
-  padding: 6px;
+  color: var(--clr-white);
+  padding: .5rem;
   border-radius: 50%;
   cursor: pointer;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
 }
 
 .edit-photo-btn:hover {
@@ -59,7 +65,7 @@
 
 .profile-info h2 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .profile-form {
@@ -67,52 +73,51 @@
 }
 
 .profile-form label {
-  font-size: 1.4rem;
-  color: #ccc;
-  margin-bottom: px;
+  font-size: 1.5rem;
+  color: var(--clr-gray-light);
 }
 
 .profile-form input {
   display: block;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background: #0f0f12;
-  color: #fff;
+  border-radius: 1rem;
+  border: var(--border-dark-mode);
+  background: var(--clr-black-light);
+  color: var(--clr-white);
   outline: none;
 }
 
 .profile-form input:focus {
-  border-color: #69c0f6;
+  border-color: var(--clr-primary);
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  color: #a1a1a1;
+  column-gap: .5rem;
+  color: var(--clr-gray-light);
   font-size: 1.5rem;
   margin-top: 0.5rem;
 }
 
 .icon {
-  margin-right: 8px;
-  color: #a1a1a1;
+  margin-right: 1rem;
 }
 
 .edit-button {
-  background: transparent;
-  border: 1.5px solid #a7a7a7;
-  color: #fff;
-  border-radius: 10px;
-  padding: 10px;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  color: var(--clr-white);
+  border-radius: 1rem;
+  padding: 1rem;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .edit-button:hover {
-  border-color: #69c0f6;
-  color: #69c0f6;
+  background: var(--clr-primary-low-op);
+  border-color: var(--clr-primary);
 }
 
 .centralize-delete {
@@ -123,40 +128,66 @@
 }
 
 .delete-profile {
-  color: #cccccc62;
+  color: var(--clr-gray-light);
   font-size: 1.5rem;
+  transition: all .3s;
+  cursor: pointer;
 }
 
-.action-buttons {
+.delete-profile:hover {
+  color: #ff0062ff;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.modal-footer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 12px;
+  column-gap: 4rem;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  font-size: 1.3rem;
 }
 
-.cancel-btn,
-.save-btn {
+.close-modal-btn {
+  width: 100%;
+  max-width: 13rem;
+  height: 4rem;
+  background: var(--clr-black-light);
+  color: var(--clr-white);
+  border: var(--border-dark-mode);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 800;
+}
+
+.delete-btn {
+  width: 100%;
+  max-width: 13rem;
   border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
+  padding: 1rem ;
+  border-radius: 1rem;
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
 }
 
-.cancel-btn {
-  background: #222;
-  color: #bbb;
+.modal-footer .delete-btn,
+.modal .btn.save {
+  background: var(--clr-gradient-light);
+  border: none;
 }
 
-.cancel-btn:hover {
-  background: #333;
-}
-
-.save-btn {
-  background: linear-gradient(to right, #5b79ff, #69c0f6);
-  color: #fff;
-}
-
-.save-btn:hover {
-  opacity: 0.9;
+.profile-photo-placeholder {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background: var(--clr-black-light);
+  border: var(--border-dark-mode);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-gray);
 }
