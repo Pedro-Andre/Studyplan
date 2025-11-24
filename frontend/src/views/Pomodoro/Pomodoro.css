@@ -27,7 +27,8 @@
 .outer {
   width: 100%;
   max-width: 100rem;
-  height: 52rem;
+  height: auto;
+  min-height: 52rem;
   background: var(--clr-black-dark);
   border: var(--border-dark-mode);
   padding: 1rem;
@@ -44,6 +45,8 @@
   position: relative;
   width: 35rem;
   height: 35rem;
+  max-width: 90vw;
+  max-height: 90vw;
   border-radius: 50%;
   box-shadow: var(--shadow-60);
   background: var(--clr-black);
@@ -85,13 +88,14 @@
   border-radius: 1.2rem;
   padding: 1rem;
   width: 50rem;
-  height: 20rem;
+  max-width: 90vw;
+  height: auto;
+  min-height: 20rem;
   box-shadow: var(--shadow-60);
   z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  min-width: 22rem;
   font-family: var(--font);
 }
 
@@ -115,6 +119,7 @@
   gap: 1rem;
   align-items: center;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .settings-input {
@@ -125,13 +130,12 @@
   font-size: 1.5rem;
   outline: none;
   transition: all 0.3s;
-  -moz-appearance: textfield;
-  -webkit-appearance: none;
   appearance: none;
 }
 
 .timer-input {
   width: 10rem;
+  max-width: 40vw;
   text-align: center;
   font-size: 2.5rem;
 }
@@ -157,6 +161,7 @@
 .settings-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .btn-settings {
@@ -179,7 +184,7 @@
   background: var(--clr-primary-highlight);
 }
 
-/* Mode Bar (Timer or Interval) */
+/* Mode Bar */
 .mode-bar {
   display: flex;
   gap: 1rem;
@@ -187,11 +192,13 @@
   width: 100%;
   max-width: 70rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .mode-btn {
   padding: 0.5rem;
   width: 22rem;
+  max-width: 45%;
   height: 5rem;
   border: 0.2rem solid var(--clr-primary);
   border-radius: 1.2rem;
@@ -223,6 +230,7 @@
   color: var(--clr-white);
   letter-spacing: 0.35rem;
   font-family: var(--font);
+  text-align: center;
 }
 
 .play-btn {
@@ -260,4 +268,59 @@
   cursor: pointer;
   transition: all 0.3s;
   outline: none;
+}
+
+/* ----------------------------- */
+/* RESPONSIVIDADE */
+/* ----------------------------- */
+
+@media (max-width: 768px) {
+  .header {
+    margin-left: 1rem;
+  }
+
+  .time-text {
+    font-size: 5rem;
+  }
+
+  .clock-container {
+    width: 28rem;
+    height: 28rem;
+  }
+
+  .settings-menu {
+    width: 90%;
+    right: 0;
+    left: 0;
+    margin-inline: auto;
+  }
+
+  .mode-btn {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-text {
+    font-size: 4rem;
+  }
+
+  .clock-container {
+    width: 22rem;
+    height: 22rem;
+  }
+
+  .adjust-btn,
+  .btn-settings {
+    width: 7rem;
+    height: 3.5rem;
+  }
+
+  .settings-input {
+    font-size: 1.3rem;
+  }
+
+  .timer-input {
+    font-size: 2rem;
+  }
 }
