@@ -50,7 +50,6 @@ function PomodoroTimer() {
 
     // QUANDO CHEGA EM ZERO
     if (time === 0 && hasStarted && !isAlarmPlaying) {
-      
       // Se o alarme estiver desligado, não toca
       if (!alarmOn) {
         setIsRunning(false);
@@ -152,7 +151,6 @@ function PomodoroTimer() {
 
         <div className="timer-container">
           <div className="outer">
-
             {/* Botão de Configurações */}
             <button
               className="settings-btn"
@@ -210,16 +208,16 @@ function PomodoroTimer() {
                   />
                 </label>
 
-                <div className="settings-buttons">
+                <div className="modal-footer">
                   <button
-                    className="btn-settings reset-btn-2"
+                    className="btn close-modal-btn"
                     onClick={handleResetSettings}
                   >
-                    Redefinir
+                    Fechar
                   </button>
 
                   <button
-                    className="btn-settings save-btn"
+                    className="btn delete-btn"
                     onClick={handleSaveSettings}
                   >
                     Salvar

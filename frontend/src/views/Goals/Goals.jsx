@@ -415,7 +415,7 @@ function Goals() {
         <div className="content">
           <TopBar />
           <h2 className="gradient-text page-title small-title">Metas</h2>
-          <p>Carregando...</p>
+          <p className="loading-text">Carregando metas...</p>
         </div>
       </main>
     );

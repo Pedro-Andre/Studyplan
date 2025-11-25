@@ -26,7 +26,6 @@
 
 [data-theme="light"] {
   --clr-white: #223756;
-  /* --clr-black: #f3f3f8; */
   --clr-black: #eee;
   --clr-black-light: #ddd;
   --clr-black-dark: #dbdde0;
@@ -156,4 +155,11 @@ input[type="color"] {
   width: 55rem;
   height: 55rem;
   opacity: 0.15;
+}
+
+.chart-text {
+  text-align: center;
+  color: var(--clr-gray-light);
+  padding: 1rem;
+  font-size: 1.5rem;
 }

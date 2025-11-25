@@ -1,20 +1,12 @@
 import "./Home.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import SideMenu from "../../components/SideMenu/SideMenu";
 import TopBar from "../../components/TopBar/TopBar";
-import { Bar, Doughnut, Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  PointElement,
-  LineElement,
-  Filler,
-} from "chart.js";
+import GoalsHoursChart from "../../components/Charts/GoalsHoursChart";
+import GoalsStatus from "../../components/Charts/GoalsStatusChart";
+import GoalsProgress from "../../components/Charts/GoalsProgressChart";
+import GoalsMonthProgress from "../../components/Charts/GoalsMonthProgress";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Calendar03Icon,
@@ -23,190 +15,32 @@ import {
 } from "@hugeicons/core-free-icons";
 import { NavLink } from "react-router-dom";
 
-// Registrar módulos do Chart.js
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  PointElement,
-  LineElement,
-  Filler
-);
-
 function Home() {
-  // Dados do gráfico de barras
-  const barData = {
-    labels: ["Faculdade", "Youtube", "Cursos", "Projeto 1", "Projeto 2"],
-    datasets: [
-      {
-        label: "Horas dedicadas",
-        data: [50, 30, 60, 80, 25],
-        backgroundColor: "#649ffd",
-        borderRadius: 8,
-        barThickness: 40,
-      },
-    ],
-  };
+  const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const barOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    devicePixelRatio: 2,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        backgroundColor: "#0f172af2",
-        padding: 12,
-        titleColor: "#eee",
-        bodyColor: "#eee",
-        borderColor: "#6366f14d",
-        borderWidth: 1,
-      },
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: "#6b7280",
-          font: { size: 12, weight: 600 },
-        },
-        grid: {
-          display: false,
-        },
-        border: {
-          color: "#ffffff1a",
-        },
-      },
-      y: {
-        ticks: {
-          color: "#6b7280",
-          font: { size: 12, weight: 600 },
-        },
-        grid: {
-          color: "#6b728050",
-        },
-        border: {
-          display: false,
-        },
-      },
-    },
-  };
+  useEffect(() => {
+    fetchDashboard();
+  }, []);
 
-  // Dados do gráfico de rosca (Doughnut)
-  const doughnutData = {
-    labels: ["Concluídas", "Em andamento", "Para fazer"],
-    datasets: [
-      {
-        data: [45, 35, 20],
-        backgroundColor: ["#22c55ecc", "#3b82f6cc", "#a855f7cc"],
-        borderWidth: 0,
-        borderRadius: 0,
-      },
-    ],
-  };
+  const fetchDashboard = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setLoading(false);
+      return;
+    }
 
-  const doughnutOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    devicePixelRatio: 2,
-    cutout: "60%",
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        backgroundColor: "#0f172af2",
-        padding: 12,
-        titleColor: "#eee",
-        bodyColor: "#eee",
-        borderColor: "#6366f14d",
-        borderWidth: 1,
-      },
-    },
-  };
-
-  // Dados do gráfico de área (Progresso ao longo do tempo)
-  const areaData = {
-    labels: [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-    ],
-    datasets: [
-      {
-        label: "Metas Concluídas",
-        data: [5, 8, 12, 15, 18, 22, 28, 32, 38, 42, 48, 55],
-        fill: true,
-        backgroundColor: "#649ffd40",
-        borderColor: "#649ffd",
-        borderWidth: 2,
-        tension: 0.4,
-        pointBackgroundColor: "#234986",
-        pointBorderColor: "#bbb",
-        pointBorderWidth: 2,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-      },
-    ],
-  };
-
-  const areaOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    devicePixelRatio: 2,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        backgroundColor: "#0f172af2",
-        padding: 12,
-        titleColor: "#eee",
-        bodyColor: "#eee",
-        borderColor: "#6366f14d",
-        borderWidth: 1,
-      },
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: "#6b7280",
-          font: { size: 12, weight: 600 },
-        },
-        grid: {
-          display: false,
-        },
-        border: {
-          color: "#ffffff1a",
-        },
-      },
-      y: {
-        ticks: {
-          color: "#6b7280",
-          font: { size: 12, weight: 600 },
-        },
-        grid: {
-          color: "#6b728050",
-        },
-        border: {
-          display: false,
-        },
-      },
-    },
+    try {
+      setLoading(true);
+      const response = await axios.get("http://localhost:3000/dashboard", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setDashboardData(response.data);
+    } catch (error) {
+      console.error("Erro ao buscar dados do dashboard:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -241,93 +75,28 @@ function Home() {
             </div>
           </section>
 
-          {/* Gráfico de barras */}
-          <section className="card chart-card chart-bar">
-            <h3 className="card-title">Horas dedicadas nas Metas</h3>
-            <div className="chart-wrapper">
-              <Bar data={barData} options={barOptions} />
-            </div>
-          </section>
+          {/* Gráficos */}
+          {loading ? (
+            <section className="card">
+              <p className="loading-text">Carregando dados...</p>
+            </section>
+          ) : (
+            <>
+              {/* Gráfico 1: Horas dedicadas nas metas */}
+              <GoalsHoursChart data={dashboardData?.horasPorMeta} />
 
-          {/* Progresso das metas (Doughnut) */}
-          <section className="card chart-card chart-doughnut">
-            <h3 className="card-title">Progresso das metas</h3>
-            <div className="doughnut-container">
-              <div className="chart-wrapper-doughnut">
-                <Doughnut data={doughnutData} options={doughnutOptions} />
-              </div>
-              <ul className="legend">
-                <li>
-                  <span className="dot green"></span>Concluídas
-                </li>
-                <li>
-                  <span className="dot purple"></span>Para fazer
-                </li>
-                <li>
-                  <span className="dot blue"></span>Em andamento
-                </li>
-              </ul>
-            </div>
-          </section>
+              {/* Gráfico 2: Status das metas (Rosca) */}
+              <GoalsStatus data={dashboardData?.statusMetas} />
 
-          {/* Metas do dia */}
-          <section className="card goals-card">
-            <div className="goals-header">
-              <h3 className="card-title">Metas do mês</h3>
-              <select className="month-select">
-                <option>Atual</option>
-                <option>Janeiro</option>
-                <option>Fevereiro</option>
-                <option>Março</option>
-              </select>
-            </div>
-            <div className="goals-list">
-              <NavLink to="/metas">
-                <div className="goal-item">
-                  <span className="goal-label">Meta 1</span>
-                  <div className="progress-bar">
-                    <div
-                      className="progress-fill"
-                      style={{ width: "70%" }}
-                    ></div>
-                  </div>
-                  <span className="goal-percentage">70%</span>
-                </div>
-              </NavLink>
-              <NavLink to="/metas">
-                <div className="goal-item">
-                  <span className="goal-label">Meta 2</span>
-                  <div className="progress-bar">
-                    <div
-                      className="progress-fill"
-                      style={{ width: "50%" }}
-                    ></div>
-                  </div>
-                  <span className="goal-percentage">50%</span>
-                </div>
-              </NavLink>
-              <NavLink to="/metas">
-                <div className="goal-item">
-                  <span className="goal-label">Meta 3</span>
-                  <div className="progress-bar">
-                    <div
-                      className="progress-fill"
-                      style={{ width: "30%" }}
-                    ></div>
-                  </div>
-                  <span className="goal-percentage">30%</span>
-                </div>
-              </NavLink>
-            </div>
-          </section>
+              {/* Gráfico 3: Metas do mês (Progresso) */}
+              <GoalsProgress data={dashboardData?.metasDoMes} />
 
-          {/* Gráfico de Área - Progresso ao longo do tempo */}
-          <section className="card chart-card chart-area">
-            <h3 className="card-title">Progresso ao longo do tempo</h3>
-            <div className="chart-wrapper">
-              <Line data={areaData} options={areaOptions} />
-            </div>
-          </section>
+              {/* Gráfico 4: Progresso ao longo do tempo */}
+              <GoalsMonthProgress
+                data={dashboardData?.progressoAoLongoDoTempo}
+              />
+            </>
+          )}
         </div>
       </div>
     </main>

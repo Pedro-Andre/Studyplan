@@ -19,7 +19,6 @@ section.card {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  /* min-height: 20rem; */
   max-height: 31.5rem;
 }
 
@@ -221,12 +220,13 @@ h3.card-title {
   width: 100%;
   flex-direction: column;
   gap: 0.8rem;
+  text-decoration: none;
 }
 
 .goal-label {
   font-size: 1.3rem;
   color: var(--clr-white);
-  font-weight: 500;
+  text-decoration: none !important;
 }
 
 .goal-label:hover {
@@ -251,7 +251,7 @@ h3.card-title {
 
 .goal-percentage {
   font-size: 1.2rem;
-  color: var(--clr-gray-light);
+  /* color: var(--clr-gray-light); */
   text-align: right;
 }
 

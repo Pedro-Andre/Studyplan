@@ -76,6 +76,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--clr-white);
+  transition: all 0.3s;
 }
 
 /* Settings Menu */
@@ -84,7 +86,7 @@
   position: absolute;
   top: 6rem;
   right: 1.5rem;
-  background: var(--clr-black);
+  background: var(--clr-black-dark);
   border-radius: 1.2rem;
   padding: 1rem;
   width: 50rem;
@@ -126,7 +128,8 @@
   padding: 1rem;
   border: var(--border-dark-mode);
   border-radius: 1rem;
-  background: var(--clr-black);
+  background: var(--clr-black-light);
+  color: var(--clr-white);
   font-size: 1.5rem;
   outline: none;
   transition: all 0.3s;
@@ -148,7 +151,7 @@
 }
 
 .adjust-btn {
-  padding: 6px 10px;
+  padding: 1rem;
   background: var(--clr-black-light);
   border: var(--border-dark-mode);
   border-radius: 1rem;
@@ -156,6 +159,7 @@
   font-size: 1.4rem;
   width: 8rem;
   height: 4rem;
+  color: var(--clr-white);
 }
 
 .settings-buttons {
@@ -174,14 +178,6 @@
   border-radius: 1rem;
   cursor: pointer;
   font-weight: 600;
-}
-
-.reset-btn-2 {
-  background: var(--clr-primary-medium);
-}
-
-.save-btn {
-  background: var(--clr-primary-highlight);
 }
 
 /* Mode Bar */
@@ -254,15 +250,15 @@
 
 /* Reset Button */
 .reset-btn {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   background: var(--clr-gray);
   color: var(--clr-white);
   border: none;
   border-radius: 1rem;
   padding: 0.5rem;
   width: 100%;
-  max-width: 20rem;
-  height: 5.5rem;
+  max-width: 15rem;
+  height: 4.5rem;
   font-weight: 500;
   font-size: 2rem;
   cursor: pointer;
@@ -270,10 +266,7 @@
   outline: none;
 }
 
-/* ----------------------------- */
 /* RESPONSIVIDADE */
-/* ----------------------------- */
-
 @media (max-width: 768px) {
   .header {
     margin-left: 1rem;

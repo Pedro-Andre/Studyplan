@@ -62,6 +62,7 @@
 .modal .btn.save {
   background: var(--clr-gradient-light);
   border: none;
+  color: var(--clr-btn-text) !important;
 }
 
 .modal .btn:hover {
