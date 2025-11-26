@@ -215,7 +215,7 @@
 .mode-btn.selected-timer,
 .mode-btn.selected-interval {
   background: var(--clr-gradient-light);
-  color: var(--clr-white);
+  color: var(--clr-btn-text);
   border: none;
   box-shadow: 0 1rem 3rem #00000060;
 }

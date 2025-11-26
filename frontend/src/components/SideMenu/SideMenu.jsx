@@ -39,7 +39,7 @@ function SideMenu() {
               end
             >
               <HugeiconsIcon icon={Home01Icon} className="link-icon" />
-              Home
+              <span>Home</span>
             </NavLink>
           </li>
           <li>
@@ -50,7 +50,7 @@ function SideMenu() {
               }
             >
               <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
-              Calendário
+              <span>Calendário</span>
             </NavLink>
           </li>
           <li>
@@ -64,7 +64,7 @@ function SideMenu() {
                 icon={CheckmarkSquare03Icon}
                 className="link-icon"
               />
-              Metas
+              <span>Metas</span>
             </NavLink>
           </li>
           <li>
@@ -75,7 +75,7 @@ function SideMenu() {
               }
             >
               <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
-              Timer
+              <span>Timer</span>
             </NavLink>
           </li>
           <li>
@@ -86,7 +86,7 @@ function SideMenu() {
               }
             >
               <HugeiconsIcon icon={User03Icon} className="link-icon" />
-              Perfil
+              <span>Perfil</span>
             </NavLink>
           </li>
           <li className="nav-link">

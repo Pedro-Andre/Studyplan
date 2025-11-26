@@ -6,9 +6,9 @@ function GoalsProgressChart({ data }) {
       <section className="card goals-card">
         <div className="goals-header">
           <h3 className="card-title">Metas do mês</h3>
-          <select className="month-select">
+          {/* <select className="month-select">
             <option>Atual</option>
-          </select>
+          </select> */}
         </div>
         <div className="goals-list">
           <p className="chart-text">Nenhuma meta para este mês</p>

@@ -59,18 +59,18 @@ function Home() {
             <div className="actions-grid">
               <NavLink to="/calendario" className="action-btn">
                 <HugeiconsIcon icon={Calendar03Icon} className="link-icon" />
-                Organizar Calendário
+                <span>Organizar Calendário</span>
               </NavLink>
               <NavLink to="/metas" className="action-btn">
                 <HugeiconsIcon
                   icon={CheckmarkSquare03Icon}
                   className="link-icon"
                 />
-                Organizar Metas
+                <span>Organizar Metas</span>
               </NavLink>
               <NavLink to="/pomodoro" className="action-btn">
                 <HugeiconsIcon icon={Clock01Icon} className="link-icon" />
-                Iniciar Timer
+                <span>Iniciar Timer</span>
               </NavLink>
             </div>
           </section>

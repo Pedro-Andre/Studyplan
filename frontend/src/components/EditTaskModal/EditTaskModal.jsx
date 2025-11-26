@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../views/Goals/Goals.css";
+import {
+  validateGoalForm,
+  hasErrors,
+  getFirstError,
+} from "../../services/frontendValidations.js";
+import ErrorMessage, {
+  FormErrorAlert,
+} from "../../components/ErrorMessage/ErrorMessage";
 
 function EditTaskModal({ goal, onClose, onGoalUpdated }) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,6 +40,16 @@ function EditTaskModal({ goal, onClose, onGoalUpdated }) {
       ...prev,
       [name]: value,
     }));
+
+    // Limpar erro do campo ao digitar
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+    setServerError("");
   };
 
   const handlePriorityChange = (priority) => {
@@ -38,20 +57,45 @@ function EditTaskModal({ goal, onClose, onGoalUpdated }) {
       ...prev,
       priority,
     }));
+
+    // Limpar erro de prioridade
+    if (errors.priority) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors.priority;
+        return newErrors;
+      });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    const fieldErrors = validateGoalField(name, formData[name], formData);
+
+    if (hasErrors(fieldErrors)) {
+      setErrors((prev) => ({
+        ...prev,
+        ...fieldErrors,
+      }));
+    } else {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setServerError("");
 
-    // Validações
-    if (!formData.name.trim()) {
-      setError("Nome da tarefa é obrigatório");
-      return;
-    }
+    // Validar formulário completo
+    const validationErrors = validateGoalForm(formData);
 
-    if (!formData.finishBy) {
-      setError("Data de conclusão é obrigatória");
+    if (hasErrors(validationErrors)) {
+      setErrors(validationErrors);
+      setServerError(getFirstError(validationErrors));
       return;
     }
 
@@ -73,11 +117,31 @@ function EditTaskModal({ goal, onClose, onGoalUpdated }) {
         }
       );
 
+      // Limpar erros e fechar modal
+      setErrors({});
+      setServerError("");
       onClose();
       onGoalUpdated();
     } catch (err) {
       console.error("Erro ao atualizar meta:", err);
-      setError(err.response?.data?.error || "Erro ao atualizar meta");
+
+      // Tratar erros do backend
+      if (err.response?.data?.errors) {
+        const backendErrors = {};
+        err.response.data.errors.forEach((error) => {
+          const field = error.path || error.param;
+          if (!backendErrors[field]) {
+            backendErrors[field] = [];
+          }
+          backendErrors[field].push(error.msg);
+        });
+        setErrors(backendErrors);
+        setServerError(getFirstError(backendErrors));
+      } else if (err.response?.data?.error) {
+        setServerError(err.response.data.error);
+      } else {
+        setServerError("Erro ao atualizar meta");
+      }
     } finally {
       setLoading(false);
     }
@@ -88,50 +152,52 @@ function EditTaskModal({ goal, onClose, onGoalUpdated }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2 className="gradient-text sub-title">Editar Tarefa</h2>
 
-        {error && (
-          <div
-            style={{
-              color: "#ff4444",
-              backgroundColor: "#ff444420",
-              padding: "10px",
-              borderRadius: "5px",
-              marginBottom: "15px",
-            }}
-          >
-            {error}
-          </div>
-        )}
+        {/* Alerta de Erro */}
+        <FormErrorAlert error={serverError} />
 
         <form onSubmit={handleSubmit}>
+          {/* Campo: Nome da tarefa */}
           <label>Nome da tarefa</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="Digite o nome da tarefa"
+            className={errors.name ? "input-error" : ""}
             disabled={loading}
           />
+          <ErrorMessage errors={errors} fieldName="name" />
 
+          {/* Campo: Categoria */}
           <label>Ferramenta utilizada</label>
           <input
             type="text"
             name="category"
             value={formData.category}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="Ex: Canva, Youtube..."
+            className={errors.category ? "input-error" : ""}
             disabled={loading}
           />
+          <ErrorMessage errors={errors} fieldName="category" />
 
+          {/* Campo: Data de conclusão */}
           <label>Conclusão estimada</label>
           <input
             type="date"
             name="finishBy"
             value={formData.finishBy}
             onChange={handleChange}
+            onBlur={handleBlur}
+            className={errors.finishBy ? "input-error" : ""}
             disabled={loading}
           />
+          <ErrorMessage errors={errors} fieldName="finishBy" />
 
+          {/* Campo: Prioridade */}
           <label className="priority-title">Nível de prioridade</label>
           <div className="priority-options">
             <label className="radio-input">
@@ -165,6 +231,7 @@ function EditTaskModal({ goal, onClose, onGoalUpdated }) {
               Alta
             </label>
           </div>
+          <ErrorMessage errors={errors} fieldName="priority" />
 
           <div className="modal-footer">
             <button

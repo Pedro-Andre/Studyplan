@@ -8,11 +8,31 @@
 // function TopBar() {
 //   const [user, setUser] = useState(null);
 
-//   useEffect(() => {
+//   // Função para carregar usuário do localStorage
+//   const loadUser = () => {
 //     const storedUser = localStorage.getItem("user");
 //     if (storedUser) {
 //       setUser(JSON.parse(storedUser));
+//     } else {
+//       setUser(null);
 //     }
+//   };
+
+//   useEffect(() => {
+//     // Carregar usuário inicial
+//     loadUser();
+
+//     // Escutar evento customizado de atualização de perfil
+//     const handleProfileUpdate = () => {
+//       loadUser();
+//     };
+
+//     window.addEventListener("profileUpdated", handleProfileUpdate);
+
+//     // Limpar listener ao desmontar
+//     return () => {
+//       window.removeEventListener("profileUpdated", handleProfileUpdate);
+//     };
 //   }, []);
 
 //   const handleLogout = () => {
@@ -41,7 +61,6 @@
 //       </div>
 //       <div className="btns-group">
 //         <ToggleDarkMode />
-
 //         {user ? (
 //           <div className="user-profile">
 //             {user.photo ? (
@@ -71,8 +90,7 @@
 
 // export default TopBar;
 
-
-// ======
+// =====
 import "./TopBar.css";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -86,9 +104,24 @@ function TopBar() {
   // Função para carregar usuário do localStorage
   const loadUser = () => {
     const storedUser = localStorage.getItem("user");
+
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        console.log("👤 Usuário carregado no TopBar:", {
+          name: parsedUser.name,
+          hasPhoto: !!parsedUser.photo,
+          photoPreview: parsedUser.photo
+            ? parsedUser.photo.substring(0, 50) + "..."
+            : null,
+        });
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Erro ao parsear usuário:", error);
+        setUser(null);
+      }
     } else {
+      console.log("❌ Nenhum usuário no localStorage");
       setUser(null);
     }
   };
@@ -99,18 +132,33 @@ function TopBar() {
 
     // Escutar evento customizado de atualização de perfil
     const handleProfileUpdate = () => {
+      console.log(
+        "🔄 Evento profileUpdated recebido - Recarregando usuário..."
+      );
       loadUser();
     };
 
     window.addEventListener("profileUpdated", handleProfileUpdate);
 
-    // Limpar listener ao desmontar
+    // Também escutar mudanças no storage (para abas múltiplas)
+    const handleStorageChange = (e) => {
+      if (e.key === "user") {
+        console.log("🔄 Storage mudou - Recarregando usuário...");
+        loadUser();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Limpar listeners ao desmontar
     return () => {
       window.removeEventListener("profileUpdated", handleProfileUpdate);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
 
   const handleLogout = () => {
+    console.log("👋 Fazendo logout...");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
@@ -139,22 +187,38 @@ function TopBar() {
         {user ? (
           <div className="user-profile">
             {user.photo ? (
-              <NavLink to="/perfil">
-                <img src={user.photo} alt={user.name} className="user-avatar" />
+              <NavLink to="/perfil" title="Ver perfil">
+                <img
+                  src={user.photo}
+                  alt={`Foto de ${user.name}`}
+                  className="user-avatar"
+                  onError={(e) => {
+                    console.error("❌ Erro ao carregar imagem do usuário");
+                    e.target.style.display = "none";
+                    e.target.nextSibling?.classList.remove("hidden");
+                  }}
+                />
+                <div className="user-avatar-placeholder hidden">
+                  <HugeiconsIcon icon={User03Icon} className="avatar-icon" />
+                </div>
               </NavLink>
             ) : (
-              <NavLink to="/perfil">
+              <NavLink to="/perfil" title="Ver perfil">
                 <div className="user-avatar-placeholder">
                   <HugeiconsIcon icon={User03Icon} className="avatar-icon" />
                 </div>
               </NavLink>
             )}
-            <button className="logout-btn" onClick={handleLogout}>
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+              title="Sair da conta"
+            >
               Sair
             </button>
           </div>
         ) : (
-          <Link to="/login" className="login-icon-btn">
+          <Link to="/login" className="login-icon-btn" title="Fazer login">
             <HugeiconsIcon icon={Login01Icon} className="login-icon" />
           </Link>
         )}

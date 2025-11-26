@@ -115,7 +115,9 @@ function GoalsMonthProgress({ data }) {
     <section className="card chart-card chart-area">
       <h3 className="card-title">Progresso ao longo do tempo</h3>
       <div className="chart-wrapper">
+        {/* <div className="graph-container"> */}
         <Line data={areaData} options={areaOptions} />
+        {/* </div> */}
       </div>
     </section>
   );

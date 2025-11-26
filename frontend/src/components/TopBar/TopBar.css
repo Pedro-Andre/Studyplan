@@ -15,15 +15,20 @@
 
 .welcome-title h2 {
   font-size: 2rem;
+  color: var(--clr-white);
 }
 
-.welcome-title p {
+.welcome-title span {
   margin-left: 0.5rem;
   font-size: 1.5rem;
+  color: var(--clr-white);
 }
 
 .welcome-title .home-login {
   color: var(--clr-gray);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
 }
 
 .logout-btn {
@@ -32,7 +37,7 @@
   color: var(--clr-white);
   width: 6.5rem;
   font-weight: 600;
-  height: 3rem;
+  height: 3.5rem;
   cursor: pointer;
   border-radius: 0.8rem;
   transition: all 0.3s;
@@ -61,68 +66,96 @@
   column-gap: 1.5rem;
 }
 
-/* Container Foto User + Botão pra sair */
+/* FOTO DE PERFIL NO TOPBAR */
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
+/* Container do avatar (link) */
+.user-profile a {
+  display: block;
+  position: relative;
+  text-decoration: none;
+}
+
+/* Foto do usuário */
 .user-avatar {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
   object-fit: cover;
-  border: 0.2rem solid var(--clr-primary);
-  transition: transform 0.3s;
+  border: 0.1rem solid var(--clr-gradient-light);
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
 }
 
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Placeholder quando não há foto */
 .user-avatar-placeholder {
-  width: 3.35rem;
-  height: 3.35rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  background: var(--clr-black-light);
-  border: 0.1rem solid var(--clr-primary);
+  background: linear-gradient(to right, #5b79ff, #69c0f6);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
   cursor: pointer;
+  transition: all 0.3s;
+  border: 0.2rem solid transparent;
 }
 
 .user-avatar-placeholder:hover {
-  border: 0.2rem solid var(--clr-primary);
+  transform: scale(1.05);
 }
 
-.avatar-icon {
-  width: 2rem;
-  height: 2rem;
-  margin-right: -0.05rem;
+.user-avatar-placeholder .avatar-icon {
   color: var(--clr-white);
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
-.login-icon-btn {
-  width: 3rem;
-  height: 3rem;
+/* Classe helper para esconder elemento */
+.hidden {
+  display: none !important;
+}
+
+/* ANIMAÇÃO DE LOADING DA FOTO */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.user-avatar[src=""],
+.user-avatar:not([src]) {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Indicador de foto carregando */
+.user-avatar-loading {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--clr-black-light);
-  border: var(--border-dark-mode);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
-.login-icon-btn:hover {
-  transform: scale(0.95);
-  background: var(--clr-gray-dark, #374151);
-}
-
-.login-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--clr-white);
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
